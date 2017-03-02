@@ -15,6 +15,9 @@ angular.
         self.setImage = function setImage(imageUrl) {
           self.mainImageUrl = imageUrl;
         };
+
+        // scroll to top on init
+        window.scrollTo(0, 0);
       }
     ]
   });

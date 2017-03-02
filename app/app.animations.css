@@ -45,12 +45,12 @@
 }
 
 .view-frame.ng-enter {
-  animation: 1s fade-in;
+  animation: 2s fade-in;
   z-index: 100;
 }
 
 .view-frame.ng-leave {
-  animation: 1s fade-out;
+  animation: 2s fade-out;
   z-index: 99;
 }
 
