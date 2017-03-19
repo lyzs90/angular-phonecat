@@ -1,23 +1,39 @@
 <!doctype html>
-<html lang="en" ng-app="phonecatApp">
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <title>Google Phone Gallery</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <!-- Styles -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="app.css" />
     <link rel="stylesheet" href="app.animations.css" />
 
+    <!-- Vendor Scripts -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
+  
+    <!-- Auth0 Scripts -->
+    <script src="http://cdn.auth0.com/js/lock/10.13.0/lock.min.js"></script>
+    <script src="http://cdn.auth0.com/js/auth0/8.4.0/auth0.min.js"></script>
+    <script src="vendor/angular-auth0.js"></script>
+    <script src="vendor/angular-lock.js"></script>
+    <script src="vendor/angular-jwt.js"></script>
+  
     <script src="app.bundle.js"></script>
   </head>
   <body>
 
-    <div class="view-container">
-      <div ng-view class="view-frame"></div>
+    <div ng-app="phonecatApp">
+
+      <div class="view-container">
+        <div ng-view class="view-frame"></div>
+      </div>
+
     </div>
 
   </body>

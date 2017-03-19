@@ -7,3 +7,5 @@ tmp
 angular-phonecat-snapshots
 bower_components/
 .vscode/
+/app/app.bundle.js
+npm-debug.log
