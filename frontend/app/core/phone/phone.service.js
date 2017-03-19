@@ -4,7 +4,7 @@ angular.
   module('core.phone').
   factory('Phone', ['$resource',
     function($resource) {
-      return $resource('phones/:phoneId.json', {}, {
+      return $resource('http://localhost:1337/api/phones/:phoneId', {}, {
         query: {
           method: 'GET',
           params: {phoneId: 'phones'},
