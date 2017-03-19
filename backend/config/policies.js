@@ -26,7 +26,12 @@ module.exports.policies = {
   *                                                                          *
   ***************************************************************************/
 
-  // '*': true,
+  '*': true,
+
+  PhoneController: {
+    getProtectedPhones: 'isAuthenticated',
+    getProtectedPhoneById: 'isAuthenticated'
+  }
 
   /***************************************************************************
   *                                                                          *
