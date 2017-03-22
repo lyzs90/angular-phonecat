@@ -2,8 +2,8 @@
 
 angular.
   module('phonecatApp').
-  config(['$locationProvider' ,'$routeProvider', 'angularAuth0Provider', 'lockProvider', 'storeProvider', 'jwtInterceptorProvider', '$httpProvider',
-    function config($locationProvider, $routeProvider, angularAuth0Provider, lockProvider, storeProvider, jwtInterceptorProvider, $httpProvider) {
+  config(['$locationProvider' ,'$routeProvider', 'angularAuth0Provider', 'lockProvider', 'storeProvider', 'jwtOptionsProvider', '$httpProvider',
+    function config($locationProvider, $routeProvider, angularAuth0Provider, lockProvider, storeProvider, jwtOptionsProvider, $httpProvider) {
       $locationProvider.hashPrefix('!');
 
       $routeProvider.
@@ -33,10 +33,17 @@ angular.
 
         storeProvider.setStore('localStorage');
 
-        jwtInterceptorProvider.tokenGetter = function(store) {
-          return store.get('token');
-        }
+        jwtOptionsProvider.config({
+          tokenGetter: ['options', 'store', function(options, store) {
+            // Skip authentication for any requests ending in .html
+            if (options.url.substr(options.url.length - 5) == '.html') {
+              return null;
+            }
+            return store.get('token');
+          }],
+          whiteListedDomains: ['localhost']
+        });
 
-        //$httpProvider.interceptors.push('jwtInterceptor');
+        $httpProvider.interceptors.push('jwtInterceptor');
     }
   ])
