@@ -1,6 +1,10 @@
 # Phone Catalog App
 
-This app is based off the Phone Catalog app from the [AngularJS Tutorial](https://docs.angularjs.org/tutorial). A separate [Sails](http://sailsjs.com/) backend serves up the API to the Angular frontend.
+This app is based off the Phone Catalog app from the [AngularJS Tutorial](https://docs.angularjs.org/tutorial). 
+
+## Features
+- A separate [Sails](http://sailsjs.com/) backend
+- Token based authentication using [Auth0](https://auth0.com/)
 
 ## Getting Started
 - Clone the repo `git clone https://github.com/lyzs90/angular-phonecat.git`
