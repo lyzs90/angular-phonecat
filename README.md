@@ -5,6 +5,7 @@ This app is based off the Phone Catalog app from the [AngularJS Tutorial](https:
 ## Features
 - A separate [Sails](http://sailsjs.com/) backend
 - Token based authentication using [Auth0](https://auth0.com/)
+- [Spinner](https://github.com/Chevtek/angular-spinners) during initial data fetch
 
 ## Getting Started
 - Clone the repo `git clone https://github.com/lyzs90/angular-phonecat.git`

@@ -20,7 +20,16 @@
     <div class="col-md-10">
       <!--Body content-->
 
-      <ul class="phones">
+      <spinner name="loader" on-loaded="getPhones()">
+        <div class="overlay"></div>
+          <div class="spinner">
+            <div class="double-bounce1"></div>
+            <div class="double-bounce2"></div>
+          </div>
+          <div class="please-wait">Please Wait...</div>
+      </spinner>
+  
+      <ul ng-show="!isLoading" class="phones">
         <li ng-repeat="phone in $ctrl.phones | filter:$ctrl.query | orderBy:$ctrl.orderProp"
             class="thumbnail phone-list-item">
           <a href="#!/phones/{{phone.id}}" class="thumb">
