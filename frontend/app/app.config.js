@@ -1,8 +1,12 @@
-'use strict';
+(function() {
+  'use strict';
 
-angular.
-  module('phonecatApp').
-  config(['$locationProvider' ,'$routeProvider', 'angularAuth0Provider', 'lockProvider', 'storeProvider', 'jwtOptionsProvider', '$httpProvider',
+  angular.
+    module('phonecatApp').
+    config(config);
+
+    config.$inject = ['$locationProvider' ,'$routeProvider', 'angularAuth0Provider', 'lockProvider', 'storeProvider', 'jwtOptionsProvider', '$httpProvider'];
+
     function config($locationProvider, $routeProvider, angularAuth0Provider, lockProvider, storeProvider, jwtOptionsProvider, $httpProvider) {
       $locationProvider.hashPrefix('!');
 
@@ -36,7 +40,7 @@ angular.
         jwtOptionsProvider.config({
           tokenGetter: ['options', 'store', function(options, store) {
             // Skip authentication for any requests ending in .html
-            if (options.url.substr(options.url.length - 5) == '.html') {
+            if (options.url.substr(options.url.length - 5) === '.html') {
               return null;
             }
             return store.get('token');
@@ -46,4 +50,5 @@ angular.
 
         $httpProvider.interceptors.push('jwtInterceptor');
     }
-  ])
+})();
+

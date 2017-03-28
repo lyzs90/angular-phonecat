@@ -1,7 +1,10 @@
-'use strict';
+(function() {
+  'use strict';
 
-// Define the `phoneList` module
-angular.module('phoneList', [
-  'core.phone',
-  'angularSpinners'
-]);
+  // Define the `phoneList` module
+  angular.module('phoneList', [
+    'core.phone',
+    'angularSpinners'
+  ]);
+})();
+

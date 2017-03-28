@@ -1,41 +1,34 @@
-'use strict';
+(function() {
+  'use strict';
 
-// Register `phoneList` component, along with its associated controller and template
-angular.
-  module('phoneList').
-  component('phoneList', {
-    templateUrl: 'phone-list/phone-list.template.html',
-    controller: ['Phone', '$q', '$scope', 'spinnerService',
-      function PhoneListController(Phone, $q, $scope, spinnerService) {
-        this.$onInit = function() {
-          $scope.isLoading = true;
-        }
+  // Register `phoneList` component, along with its associated controller and template
+  angular.
+    module('phoneList').
+    component('phoneList', {
+      templateUrl: 'phone-list/phone-list.template.html',
+      controller: PhoneListController
+    });
 
-        var $ctrl = this;
+    PhoneListController.$inject = ['Phone', 'spinnerService'];
 
-        function delay(ms) {
-          return function(value) {
-            return $q(function(resolve, reject) {
-              setTimeout(function() {
-                resolve(value);
-              }, ms)
-            });
-          }
-        }
+    function PhoneListController(Phone, spinnerService) {
+      this.$onInit = function() {
+        this.isLoading = true;
+      };
 
-        $scope.getPhones = function() {
-          spinnerService.show('loader');
-          Phone.query()
-            .$promise
-            .then(delay(3000))
-            .then(function(value) {
-              $scope.isLoading = false;
-              spinnerService.hide('loader');
-              $ctrl.phones = value;
-            });
-        }
-        
-        this.orderProp = 'age';
+      var vm = this;
+
+      vm.getPhones = getPhones;
+      vm.orderProp = 'age';
+
+      function getPhones() {
+        spinnerService.show('loader');
+        Phone.getPhones()
+          .then(function(value) {
+            vm.isLoading = false;
+            spinnerService.hide('loader');
+            vm.phones = value;
+          });
       }
-    ]
-  });
+    }
+})();

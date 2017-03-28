@@ -1,4 +1,7 @@
-'use strict';
+(function() {
+  'use strict';
 
-// Define the `core.phone` module
-angular.module('core.phone', ['ngResource']);
+  // Define the `core.phone` module
+  angular.module('core.phone', ['ngResource']);
+})();
+
