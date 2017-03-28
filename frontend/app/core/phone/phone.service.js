@@ -5,25 +5,15 @@
     module('core.phone').
     factory('Phone', Phone);
 
-  Phone.$inject = ['$resource', '$q'];
+  Phone.$inject = ['$resource'];
 
-  function Phone($resource, $q) {
+  function Phone($resource) {
     return {
       getPhones: getPhones
     };
 
     function resourceErrorHandler(err) {
       console.log(err);
-    }
-
-    function delay(ms) {
-      return function(value) {
-        return $q(function(resolve, reject) {
-          setTimeout(function() {
-            resolve(value);
-          }, ms);
-        });
-      };
     }
 
     function getPhones() {
@@ -34,9 +24,6 @@
         isArray: true
         }}
       )
-        .query()
-        .$promise
-        .then(delay(3000));
     }
   }
 })();

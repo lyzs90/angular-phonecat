@@ -14,9 +14,11 @@
   function PhoneDetailController($routeParams, Phone) {
     var vm = this;
 
-    vm.phone = Phone.get({phoneId: $routeParams.phoneId}, function(phone) {
-      vm.setImage(phone.images[0]);
-    });
+    vm.phone = Phone
+		.getPhones()
+		.get({phoneId: $routeParams.phoneId}, function(phone) {
+          vm.setImage(phone.images[0]);
+        });
 
     vm.setImage = function setImage(imageUrl) {
       vm.mainImageUrl = imageUrl;

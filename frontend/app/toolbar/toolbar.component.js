@@ -12,24 +12,24 @@
     ToolbarController.$inject = ['lock', 'angularAuth0', 'store', '$location', '$scope', 'jwtHelper', 'authManager'];
 
     function ToolbarController(lock, angularAuth0, store, $location, $scope, jwtHelper, authManager) {
-      this.$onInit = function () {
+	  var vm = this;
+
+      vm.$onInit = function () {
         // Get the JWT that is saved in local storage
         // and if it is there, check whether it is expired.
         // If it isn't, set the user's auth state
         var token = store.get('token');
         if (token) {
           if (!jwtHelper.isTokenExpired(token)) {
-            if (!this.isAuthenticated) {
+            if (!vm.isAuthenticated) {
               authManager.authenticate();
 
               //Store the status in the scope 
-              this.isAuthenticated = true;
+              vm.isAuthenticated = true;
             }
           }
         }
       }
-
-      var vm = this;
 
       vm.auth = angularAuth0;
       vm.lock = lock;
