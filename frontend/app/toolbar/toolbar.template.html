@@ -7,14 +7,14 @@
 
     <md-button
       aria-label="Login"
-      ng-if="!$ctrl.isAuthenticated"
+      ng-if="!$root.isAuthenticated"
       ng-click="$ctrl.login()">
       Login
     </md-button>
 
     <md-button
       aria-label="Logout"
-      ng-if="$ctrl.isAuthenticated"
+      ng-if="$root.isAuthenticated"
       ng-click="$ctrl.logout()">
       Logout
     </md-button>

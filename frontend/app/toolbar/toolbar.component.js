@@ -9,9 +9,9 @@
       controller: ToolbarController
     });
 
-    ToolbarController.$inject = ['lock', 'angularAuth0', 'store', '$location', '$scope', 'jwtHelper', 'authManager'];
+    ToolbarController.$inject = ['lock', 'angularAuth0', 'store', '$location', '$rootScope', 'jwtHelper', 'authManager'];
 
-    function ToolbarController(lock, angularAuth0, store, $location, $scope, jwtHelper, authManager) {
+    function ToolbarController(lock, angularAuth0, store, $location, $rootScope, jwtHelper, authManager) {
 	  var vm = this;
 
       vm.$onInit = function () {
@@ -21,15 +21,15 @@
         var token = store.get('token');
         if (token) {
           if (!jwtHelper.isTokenExpired(token)) {
-            if (!vm.isAuthenticated) {
+            if (!$rootScope.isAuthenticated) {
               authManager.authenticate();
 
               //Store the status in the scope 
-              vm.isAuthenticated = true;
+              $rootScope.isAuthenticated = true;
             }
           }
         }
-      }
+      };
 
       vm.auth = angularAuth0;
       vm.lock = lock;
@@ -42,7 +42,7 @@
           store.set('token', authResult.idToken);
 
           // set isAuthenticated to true
-          $scope.isAuthenticated = true;
+          $rootScope.isAuthenticated = true;
 
           lock.getProfile(authResult.idToken, function(error, profile) {
             if (error) {
@@ -54,14 +54,16 @@
       }
 
       function logout() {
-        vm.auth.logout();
+        vm.auth.logout({
+          returnTo: 'http://localhost:8000/#!/phones'
+        });
 
         // set isAuthenticated to false
-        vm.isAuthenticated = false;
+        $rootScope.isAuthenticated = false;
 
         store.remove('profile');
         store.remove('token');
-        $location.path('/');
+        $location.path('/phones');
       }
     }
 })();

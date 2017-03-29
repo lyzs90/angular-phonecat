@@ -9,19 +9,19 @@
       controller: PhoneListController
     });
 
-    PhoneListController.$inject = ['Phone', 'spinnerService', '$q'];
+    PhoneListController.$inject = ['Phone', 'spinnerService', '$q', '$rootScope'];
 
-    function PhoneListController(Phone, spinnerService, $q) {
-	  var vm = this;
-		
-      vm.$onInit = function() {
-        vm.isLoading = true;
-      };
+    function PhoneListController(Phone, spinnerService, $q, $rootScope) {
+	    var vm = this;
 
       vm.getPhones = getPhones;
       vm.orderProp = 'age';
+		
+      vm.$onInit = function() {
+        vm.dataLoaded = false;
+      };
 	  
-	  function delay(ms) {
+	    function delay(ms) {
         return function(value) {
           return $q(function(resolve, reject) {
             setTimeout(function() {
@@ -32,16 +32,20 @@
       }
 
       function getPhones() {
-        spinnerService.show('loader');
-        Phone.getPhones()
-		  .query()
-          .$promise
-          .then(delay(3000))
-          .then(function(value) {
-            vm.isLoading = false;
-            spinnerService.hide('loader');
-            vm.phones = value;
-          });
+        $rootScope.$watch('isAuthenticated', function() {
+          if($rootScope.isAuthenticated) {
+            spinnerService.show('loader');
+            Phone.getPhones()
+              .query()
+              .$promise
+              .then(delay(3000))
+              .then(function(value) {
+                vm.dataLoaded = true;
+                spinnerService.hide('loader');
+                vm.phones = value;
+              });
+          }
+        });
       }
     }
 })();
