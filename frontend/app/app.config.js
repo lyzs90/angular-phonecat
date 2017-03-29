@@ -8,16 +8,22 @@
     config.$inject = ['$locationProvider' ,'$routeProvider', 'angularAuth0Provider', 'lockProvider', 'storeProvider', 'jwtOptionsProvider', '$httpProvider'];
 
     function config($locationProvider, $routeProvider, angularAuth0Provider, lockProvider, storeProvider, jwtOptionsProvider, $httpProvider) {
-      $locationProvider.hashPrefix('!');
+      $locationProvider.html5Mode(true);
 
       $routeProvider.
+        when('/', {
+          template: '<home></home>'
+        }).
+        when('/profile', {
+          template: '<profile></profile>'
+        }).
         when('/phones', {
           template: '<phone-list></phone-list>'
         }).
         when('/phones/:phoneId', {
           template: '<phone-detail></phone-detail>'
         }).
-        otherwise('/phones');
+        otherwise('/');
 
         angularAuth0Provider.init({
           domain: 'lyzs90.auth0.com',

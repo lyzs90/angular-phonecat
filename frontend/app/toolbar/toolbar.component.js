@@ -55,7 +55,7 @@
 
       function logout() {
         vm.auth.logout({
-          returnTo: 'http://localhost:8000/#!/phones'
+          returnTo: 'http://localhost:8000/'
         });
 
         // set isAuthenticated to false
@@ -63,7 +63,7 @@
 
         store.remove('profile');
         store.remove('token');
-        $location.path('/phones');
+        $location.path('/');
       }
     }
 })();

@@ -6,6 +6,26 @@
     <span flex></span>
 
     <md-button
+      href="/"
+      aria-label="Home">
+      Home
+    </md-button>
+
+    <md-button
+      href="phones"
+      ng-if="$root.isAuthenticated"
+      aria-label="Catalog">
+      Catalog
+    </md-button>
+
+    <md-button
+      href="profile"
+      ng-if="$root.isAuthenticated"
+      aria-label="Profile">
+      Profile
+    </md-button>
+
+    <md-button
       aria-label="Login"
       ng-if="!$root.isAuthenticated"
       ng-click="$ctrl.login()">

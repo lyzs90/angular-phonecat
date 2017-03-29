@@ -12,6 +12,8 @@
     'ngRoute',
     'core',
     'toolbar',
+    'home',
+    'profile',
     'phoneDetail',
     'phoneList'
   ]);
