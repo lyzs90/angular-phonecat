@@ -9,3 +9,4 @@ bower_components/
 .vscode/
 /app/app.bundle.js
 npm-debug.log
+/app/vendor
