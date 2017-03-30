@@ -9,14 +9,14 @@
       controller: PhoneDetailController
     });
 
-  PhoneDetailController.$inject = ['$routeParams', 'Phone'];
+  PhoneDetailController.$inject = ['$stateParams', 'Phone'];
 
-  function PhoneDetailController($routeParams, Phone) {
+  function PhoneDetailController($stateParams, Phone) {
     var vm = this;
 
     vm.phone = Phone
 		.getPhones()
-		.get({phoneId: $routeParams.phoneId}, function(phone) {
+		.get({phoneId: $stateParams.phoneId}, function(phone) {
           vm.setImage(phone.images[0]);
         });
 

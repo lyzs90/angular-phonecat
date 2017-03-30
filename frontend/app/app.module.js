@@ -9,7 +9,7 @@
     'angular-jwt', 
     'ngMaterial',
     'ngAnimate',
-    'ngRoute',
+    'ui.router',
     'core',
     'toolbar',
     'home',

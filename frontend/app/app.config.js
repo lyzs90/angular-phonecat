@@ -5,25 +5,31 @@
     module('phonecatApp').
     config(config);
 
-    config.$inject = ['$locationProvider' ,'$routeProvider', 'angularAuth0Provider', 'lockProvider', 'storeProvider', 'jwtOptionsProvider', '$httpProvider'];
+    config.$inject = ['$locationProvider' ,'$stateProvider', '$urlRouterProvider', 'angularAuth0Provider', 'lockProvider', 'storeProvider', 'jwtOptionsProvider', '$httpProvider'];
 
-    function config($locationProvider, $routeProvider, angularAuth0Provider, lockProvider, storeProvider, jwtOptionsProvider, $httpProvider) {
+    function config($locationProvider, $stateProvider, $urlRouterProvider, angularAuth0Provider, lockProvider, storeProvider, jwtOptionsProvider, $httpProvider) {
+
       $locationProvider.html5Mode(true);
 
-      $routeProvider.
-        when('/', {
+      $urlRouterProvider.otherwise('/');
+
+      $stateProvider
+        .state('home', {
+          url: '/',
           template: '<home></home>'
-        }).
-        when('/profile', {
-          template: '<profile></profile>'
-        }).
-        when('/phones', {
+        })
+        .state('phones', {
+          url: '/phones',
           template: '<phone-list></phone-list>'
-        }).
-        when('/phones/:phoneId', {
+        })
+        .state('detail', {
+          url: '/phone/:phoneId',
           template: '<phone-detail></phone-detail>'
-        }).
-        otherwise('/');
+        })
+        .state('cart', {
+          url: '/profile',
+          template: '<profile></profile>'
+        });
 
         angularAuth0Provider.init({
           domain: 'lyzs90.auth0.com',
