@@ -50,21 +50,23 @@
             }
             store.set('profile', JSON.stringify(profile));
           });
+
+          // redirect to catalog
+          $location.path('/phones');
         });
       }
 
       function logout() {
-        vm.auth.logout({
-          returnTo: 'http://localhost:8000/'
-        });
+        vm.auth.logout();
 
         // set isAuthenticated to false
         $rootScope.isAuthenticated = false;
 
         store.remove('profile');
         store.remove('token');
-        $location.path('/');
       }
+      // redirect to home
+      $location.path('/');
     }
 })();
 
