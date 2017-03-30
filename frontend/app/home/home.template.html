@@ -1,4 +1,20 @@
-<md-content>
-  <h1>Welcome to the Phone Catalog app!</h1>
-  <h3>Login from the toolbar above to access the catalog.</h3>
-</md-content>
+<div class="jumbotron text-center">
+  <div ng-if="!$root.isAuthenticated">
+    <h2>Welcome to the Phone Catalog app!</h2>
+    <h3>Login from the toolbar above!</h3>
+  </div>
+
+  <div ng-if="$root.isAuthenticated">
+    <h2>Welcome to the Phone Catalog app!</h2>
+    <h3>You are now logged in!</h3>
+    <br>
+    <md-button
+      class="md-raised md-warn"
+      ui-sref=".phones"
+      aria-label="Catalog">
+      View Catalog
+    </md-button>
+  </div>
+</div>
+
+<div ui-view></div>

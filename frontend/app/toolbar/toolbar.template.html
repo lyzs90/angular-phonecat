@@ -6,23 +6,19 @@
     <span flex></span>
 
     <md-button
-      href="/"
+      class="md-icon-button"
+      ui-sref="home"
+      ng-if="$root.isAuthenticated"
       aria-label="Home">
-      Home
+      <i class="material-icons">home</i>
     </md-button>
 
     <md-button
-      href="phones"
+      class="md-icon-button"
+      ui-sref="cart"
       ng-if="$root.isAuthenticated"
-      aria-label="Catalog">
-      Catalog
-    </md-button>
-
-    <md-button
-      href="profile"
-      ng-if="$root.isAuthenticated"
-      aria-label="Profile">
-      Profile
+      aria-label="Cart">
+      <i class="material-icons">shopping_cart</i>
     </md-button>
 
     <md-button

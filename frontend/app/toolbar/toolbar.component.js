@@ -50,9 +50,6 @@
             }
             store.set('profile', JSON.stringify(profile));
           });
-
-          // redirect to catalog
-          $location.path('/phones');
         });
       }
 

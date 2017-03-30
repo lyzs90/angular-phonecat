@@ -4,6 +4,12 @@
   angular
     .module('home')
     .component('home', {
-      templateUrl: 'home/home.template.html'
+      templateUrl: 'home/home.template.html',
+      controller: HomeController
     });
+
+    HomeController.$inject = ['$rootScope'];
+
+    function HomeController($rootScope) {
+    }
 })();

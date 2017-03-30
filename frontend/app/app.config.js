@@ -18,8 +18,8 @@
           url: '/',
           template: '<home></home>'
         })
-        .state('phones', {
-          url: '/phones',
+        .state('home.phones', {
+          url: '^/phones',  // use absolute route
           template: '<phone-list></phone-list>'
         })
         .state('detail', {

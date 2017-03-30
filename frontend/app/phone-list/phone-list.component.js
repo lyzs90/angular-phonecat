@@ -38,7 +38,7 @@
             Phone.getPhones()
               .query()
               .$promise
-              .then(delay(3000))
+              .then(delay(500))
               .then(function(value) {
                 vm.dataLoaded = true;
                 spinnerService.hide('loader');

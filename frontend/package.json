@@ -22,17 +22,22 @@
     "karma": "^0.13.22",
     "karma-chrome-launcher": "^0.2.3",
     "karma-firefox-launcher": "^0.1.7",
-    "karma-jasmine": "^0.3.8"
+    "karma-jasmine": "^0.3.8",
+    "nodemon": "^1.11.0"
   },
   "dependencies": {
     "angular-auth0": "^2.0.0-beta.1",
     "angular-jwt": "^0.1.9",
-    "angular-lock": "^2.0.1"
+    "angular-lock": "^2.0.1",
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "method-override": "^2.3.8",
+    "morgan": "^1.8.1"
   },
   "scripts": {
     "postinstall": "bower install",
     "prestart": "npm install && gulp",
-    "start": "http-server ./app -a localhost -p 8000 -c-1",
+    "start": "nodemon server.js",
     "pretest": "npm install",
     "test": "karma start karma.conf.js",
     "test-single-run": "karma start karma.conf.js --single-run",

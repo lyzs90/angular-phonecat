@@ -26,6 +26,15 @@ h1 {
   width: 100px;
 }
 
+.phone__btn--cart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  margin-right: 20px;
+}
+
 /* View: Phone detail */
 .phone {
   background-color: white;
