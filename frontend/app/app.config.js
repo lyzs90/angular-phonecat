@@ -27,8 +27,8 @@
           template: '<phone-detail></phone-detail>'
         })
         .state('cart', {
-          url: '/profile',
-          template: '<profile></profile>'
+          url: '/cart',
+          template: '<cart></cart>'
         });
 
         angularAuth0Provider.init({

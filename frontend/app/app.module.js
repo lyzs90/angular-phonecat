@@ -13,7 +13,7 @@
     'core',
     'toolbar',
     'home',
-    'profile',
+    'cart',
     'phoneDetail',
     'phoneList'
   ]);
