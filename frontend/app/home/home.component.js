@@ -8,8 +8,19 @@
       controller: HomeController
     });
 
-    HomeController.$inject = ['$rootScope'];
+    HomeController.$inject = ['Auth', '$scope'];
 
-    function HomeController($rootScope) {
+    function HomeController(Auth, $scope) {
+      var vm = this;
+
+      vm.$onInit = function () {
+        Auth.checkToken(); 
+      };
+
+      $scope.$watch(
+        function() { return Auth.isAuthenticated; }, 
+        function() {
+          vm.isAuthenticated = Auth.isAuthenticated;
+      });
     }
 })();

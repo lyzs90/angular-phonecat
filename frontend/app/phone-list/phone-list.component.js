@@ -9,9 +9,9 @@
       controller: PhoneListController
     });
 
-    PhoneListController.$inject = ['Phone', 'spinnerService', '$q', '$rootScope'];
+    PhoneListController.$inject = ['Phone', 'Auth', 'spinnerService', '$q', '$scope'];
 
-    function PhoneListController(Phone, spinnerService, $q, $rootScope) {
+    function PhoneListController(Phone, Auth, spinnerService, $q, $scope) {
 	    var vm = this;
 
       vm.getPhones = getPhones;
@@ -22,18 +22,20 @@
       };
 
       function getPhones() {
-        $rootScope.$watch('isAuthenticated', function() {
-          if($rootScope.isAuthenticated) {
-            spinnerService.show('loader');
-            Phone.getPhones()
-              .query()
-              .$promise
-              .then(function(value) {
-                vm.dataLoaded = true;
-                spinnerService.hide('loader');
-                vm.phones = value;
-              });
-          }
+        $scope.$watch(
+          function() { return Auth.isAuthenticated; }, 
+          function() {
+            if(Auth.isAuthenticated) {
+              spinnerService.show('loader');
+              Phone.getPhones()
+                .query()
+                .$promise
+                .then(function(value) {
+                  vm.dataLoaded = true;
+                  spinnerService.hide('loader');
+                  vm.phones = value;
+                });
+            }
         });
       }
     }
