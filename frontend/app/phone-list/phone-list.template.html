@@ -36,7 +36,7 @@
             <img ng-src="{{phone.imageUrl}}" alt="{{phone.name}}" />
           </a>
           <a ui-sref="detail({phoneId: phone.id})">{{phone.name}}</a>
-          <p>{{phone.snippet}}</p>
+          <p class="phone__snippet">{{phone.snippet}}</p>
           <md-button class="md-fab phone__btn--cart" aria-label="Add to Cart">
             <i class="material-icons">add_shopping_cart</i>
           </md-button>

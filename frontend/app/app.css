@@ -14,8 +14,13 @@ h1 {
 
 .phones li {
   clear: both;
-  height: 115px;
+  height: 130px;
   padding-top: 15px;
+}
+
+.phone-list-item {
+  display: flex;
+  align-items: center;
 }
 
 .thumb {
@@ -26,13 +31,17 @@ h1 {
   width: 100px;
 }
 
+.phone__snippet {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
 .phone__btn--cart {
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
   right: 0;
-  margin-right: 20px;
 }
 
 /* View: Phone detail */
