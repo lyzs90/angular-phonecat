@@ -20,16 +20,6 @@
       vm.$onInit = function() {
         vm.dataLoaded = false;
       };
-	  
-	    function delay(ms) {
-        return function(value) {
-          return $q(function(resolve, reject) {
-            setTimeout(function() {
-              resolve(value);
-            }, ms);
-          });
-        };
-      }
 
       function getPhones() {
         $rootScope.$watch('isAuthenticated', function() {
@@ -38,7 +28,6 @@
             Phone.getPhones()
               .query()
               .$promise
-              .then(delay(500))
               .then(function(value) {
                 vm.dataLoaded = true;
                 spinnerService.hide('loader');
