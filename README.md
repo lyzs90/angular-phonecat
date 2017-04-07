@@ -19,6 +19,9 @@ This app is based off the Phone Catalog app from the [AngularJS Tutorial](https:
 - Install the frontend `cd frontend && npm install && bower install`
 - Run the app `npm start`
 
+## Unit Tests
+- [Jasmine][jasmine] and [Karma][karma] are used for the frontend `cd frontend && npm test`
+
 ## E2E Tests
 - End-to-end tesing is handled by [Protactor](https://github.com/angular/protractor)`
 - Install Protractor globally `npm install -g protractor`

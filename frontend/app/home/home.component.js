@@ -8,9 +8,12 @@
       controller: HomeController
     });
 
-    HomeController.$inject = ['Auth', '$scope'];
-
-    function HomeController(Auth, $scope) {
+    /**
+     * @name HomeController
+     * @desc Controller for binding auth state to Home template
+     * @ngInject
+     */
+    function HomeController(Auth, $scope) { // TODO: how to avoid using scope and watcher?
       var vm = this;
 
       vm.$onInit = function () {

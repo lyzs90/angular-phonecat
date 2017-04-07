@@ -5,8 +5,11 @@
     module('phonecatApp').
     config(config);
 
-    config.$inject = ['$locationProvider' ,'$stateProvider', '$urlRouterProvider', 'angularAuth0Provider', 'lockProvider', 'storeProvider', 'jwtOptionsProvider', '$httpProvider'];
-
+    /**
+     * @name config
+     * @desc Angular Configuration
+     * @ngInject
+     */
     function config($locationProvider, $stateProvider, $urlRouterProvider, angularAuth0Provider, lockProvider, storeProvider, jwtOptionsProvider, $httpProvider) {
 
       $locationProvider.html5Mode(true);

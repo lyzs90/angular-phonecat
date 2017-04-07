@@ -9,20 +9,30 @@
       controller: PhoneDetailController
     });
 
-  PhoneDetailController.$inject = ['$stateParams', 'Phone'];
-
+  /**
+   * @name PhoneDetailController
+   * @desc Controller for retrieving phone details
+   * @ngInject
+   */
   function PhoneDetailController($stateParams, Phone) {
     var vm = this;
+
+    vm.setImage = setImage;
 
     vm.phone = Phone
 		.getPhones()
 		.get({phoneId: $stateParams.phoneId}, function(phone) {
           vm.setImage(phone.images[0]);
         });
-
-    vm.setImage = function setImage(imageUrl) {
+    
+    /**
+     * @name setImage
+     * @desc Function to set the main phone image. To be triggered by clicking.
+     * @param {String} imageUrl
+     */
+    function setImage(imageUrl) {
       vm.mainImageUrl = imageUrl;
-    };
+    }
 
     // scroll to top on init
     window.scrollTo(0, 0);

@@ -3,12 +3,29 @@
 
   angular.
     module('phonecatApp').
-    animation('.phone', function phoneAnimationFactory() {
-      return {
+    animation('.phone', phoneAnimationFactory);
+    
+    /**
+     * @name phoneAnimationFactory
+     * @desc Service handling phone animations
+     * @ngInject
+     */
+    function phoneAnimationFactory() {
+
+      var service = {
         addClass: animateIn,
         removeClass: animateOut
       };
 
+      return service;
+
+      /**
+       * @name animateIn
+       * @desc Animation for sliding in
+       * @param {String} element
+       * @param {String} className
+       * @param {Boolean} done
+       */
       function animateIn(element, className, done) {
         if (className !== 'selected') {return;}
 
@@ -26,6 +43,13 @@
         };
       }
 
+      /**
+       * @name animateOut
+       * @desc Animation for sliding out
+       * @param {String} element
+       * @param {String} className
+       * @param {Boolean} done
+       */
       function animateOut(element, className, done) {
         if (className !== 'selected') {return;}
 
@@ -41,6 +65,6 @@
           if (wasCanceled) {element.stop();}
         };
       }
-    });
+    }
 })();
 

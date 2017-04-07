@@ -5,8 +5,11 @@
     module('core.auth').
     factory('Auth', Auth);
 
-  Auth.$inject = ['lock', 'angularAuth0', 'store', 'jwtHelper', 'authManager', '$location'];
-
+  /**
+   * @name Auth
+   * @desc Service for passing authentication status, checking for JWT token    * and handling login/logout
+   * @ngInject
+   */
   function Auth(lock, angularAuth0, store, jwtHelper, authManager, $location) {
     var isAuthenticated = false;
     var auth = angularAuth0;
@@ -20,8 +23,11 @@
 
     return service;
 
+    /**
+     * @name checkToken
+     * @desc Get the JWT that is saved in local storage and if it is there,    * check whether it is expired.
+     */
     function checkToken() {
-      // Get the JWT that is saved in local storage and if it is there, check whether it is expired. If it isn't, set the user's auth state
       var token = store.get('token');
       if (token) {
         if (!jwtHelper.isTokenExpired(token)) {
@@ -35,6 +41,10 @@
       }
     }
 
+    /**
+     * @name login
+     * @desc Uses the Auth0 lock widget for login. Token/profile is stored in   * local storage and auth state is persisted in the singleton. 
+     */
     function login() {
       lock.show();
       lock.on('authenticated', function(authResult) {
@@ -52,6 +62,10 @@
       });
     }
 
+    /**
+     * @name logout
+     * @desc Logs user out and clears local storage / auth state. User is      * redirected to home route.
+     */
     function logout() {
       auth.logout();
 

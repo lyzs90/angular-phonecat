@@ -9,8 +9,11 @@
       controller: ToolbarController
     });
 
-    ToolbarController.$inject = ['Auth', '$scope'];
-
+    /**
+     * @name ToolbarController
+     * @desc Controller for checking local storage whenever route changes
+     * @ngInject
+     */
     function ToolbarController(Auth, $scope) {
 	  var vm = this;
 

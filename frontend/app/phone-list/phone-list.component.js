@@ -9,8 +9,11 @@
       controller: PhoneListController
     });
 
-    PhoneListController.$inject = ['Phone', 'Auth', 'spinnerService', '$q', '$scope'];
-
+    /**
+     * @name PhoneListController
+     * @desc Controller for retrieving the phone list
+     * @ngInject
+     */
     function PhoneListController(Phone, Auth, spinnerService, $q, $scope) {
 	    var vm = this;
 
@@ -21,6 +24,10 @@
         vm.dataLoaded = false;
       };
 
+      /**
+       * @name getPhones
+       * @desc Retrieves data if user is authenticated. Loads a spinner while  * waiting for async request to resolve.
+       */
       function getPhones() {
         $scope.$watch(
           function() { return Auth.isAuthenticated; }, 
@@ -36,7 +43,8 @@
                   vm.phones = value;
                 });
             }
-        });
+          }
+        );
       }
     }
 })();
