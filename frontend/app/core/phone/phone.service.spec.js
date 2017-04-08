@@ -9,18 +9,13 @@ describe('Phone', function() {
     {name: 'Phone Z'}
   ];
 
-  // Add a custom equality tester before each test
-  beforeEach(function() {
-    jasmine.addCustomEqualityTester(angular.equals);
-  });
-
   // Load the module that contains the `Phone` service before each test
   beforeEach(module('core.phone'));
 
   // Instantiate the service and "train" `$httpBackend` before each test
   beforeEach(inject(function(_$httpBackend_, _Phone_) {
     $httpBackend = _$httpBackend_;
-    $httpBackend.expectGET('phones/phones.json').respond(phonesData);
+    $httpBackend.expectGET('http://localhost:1337/api/protected/phones/phones').respond(phonesData);
 
     Phone = _Phone_;
   }));
@@ -31,13 +26,17 @@ describe('Phone', function() {
     $httpBackend.verifyNoOutstandingRequest();
   });
 
-  it('should fetch the phones data from `/phones/phones.json`', function() {
-    var phones = Phone.query();
+  it('should fetch the phones data from backend', function() {
+    $httpBackend.when('GET', new RegExp('.*')).respond(function(method, url, data) {
+      console.log('URL:', url);
+    });
+    
+    var phones = Phone.getPhones().query();
 
-    expect(phones).toEqual([]);
+    expect(angular.equals(phones, [])).to.be.true();
 
     $httpBackend.flush();
-    expect(phones).toEqual(phonesData);
+    expect(angular.equals(phones, phonesData)).to.be.true();
   });
 
 });

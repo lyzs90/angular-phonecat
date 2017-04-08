@@ -2,7 +2,7 @@
   'use strict';
 
   // Define the `phoneList` module
-  angular.module('phoneList', [
+  angular.module('phoneListModule', [
     'core.phone',
     'core.auth',
     'angularSpinners'

@@ -1,33 +1,59 @@
 'use strict';
 
 describe('phoneList', function() {
+  var mockAuth, mockSpinner;
 
   // Load the module that contains the `phoneList` component before each test
-  beforeEach(module('phoneList'));
+  beforeEach(module('phoneListModule'));
+
+  beforeEach(function() {
+    // Mock the authentication
+    mockAuth = sinon.stub({
+      isAuthenticated: false
+    });
+
+    // Mock the spinner
+    mockSpinner = sinon.stub({
+      show: function() {}, 
+      hide: function() {}
+    });
+    
+    module(function($provide) {
+      $provide.value('Auth', mockAuth);
+      $provide.value('spinnerService', mockSpinner);
+    });
+  });
 
   // Test the controller
   describe('PhoneListController', function() {
-    var $httpBackend, ctrl;
+    var $httpBackend, $componentController, $scope, ctrl;
 
-    beforeEach(inject(function($componentController, _$httpBackend_) {
+    beforeEach(inject(function(_$httpBackend_, _$componentController_, $rootScope) {
+      // Mock the backend
       $httpBackend = _$httpBackend_;
-      $httpBackend.expectGET('phones/phones.json')
-                  .respond([{name: 'Nexus S'}, {name: 'Motorola DROID'}]);
-
-      ctrl = $componentController('phoneList');
+      $httpBackend.expectGET('http://localhost:1337/api/protected/phones/phones').respond(true);
+      
+      // Mock the controller
+      $scope = $rootScope.$new();
+      $componentController = _$componentController_;
+      ctrl = $componentController('phoneList', {$scope: $scope});
     }));
 
-    it('should create a `phones` property with 2 phones fetched with `$http`', function() {
-      jasmine.addCustomEqualityTester(angular.equals);
+    it('should call spinner when fetching data', function() {
+      ctrl.getPhones();
+      assert(mockSpinner.show.calledOnce);
+    });
 
-      expect(ctrl.phones).toEqual([]);
+    it('should check that data is fetched once user is authenticated', function() {
+      // simulate Auth state change
+      mockAuth.isAuthenticated = true;
+      $scope.$digest();
 
-      $httpBackend.flush();
-      expect(ctrl.phones).toEqual([{name: 'Nexus S'}, {name: 'Motorola DROID'}]);
+      assert(mockSpinner.show.calledOnce);
     });
 
     it('should set a default value for the `orderProp` property', function() {
-      expect(ctrl.orderProp).toBe('age');
+      expect(angular.equals(ctrl.orderProp, 'age')).to.be.true();
     });
 
   });

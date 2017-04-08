@@ -50,8 +50,10 @@
   "validthis": false,
   "noyield": false,
 
+  // Environments
   "browser": true,
   "node": true,
+  "mocha": true,
 
   "globals": {
     // Angular
@@ -72,6 +74,12 @@
     // Protractor
     "browser": false,
     "element": false,
-    "by": false
+    "by": false,
+
+    // Chai
+    "assert": false,
+
+    // Sinon
+    "sinon": false
   }
 }

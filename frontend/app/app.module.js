@@ -11,8 +11,8 @@
     'toolbar',
     'home',
     'cart',
-    'phoneDetail',
-    'phoneList'
+    'phoneDetailModule',
+    'phoneListModule'
   ]);
 })();
 

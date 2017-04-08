@@ -3,7 +3,7 @@
 
   // Register `phoneList` component, along with its associated controller and template
   angular.
-    module('phoneList').
+    module('phoneListModule').
     component('phoneList', {
       templateUrl: 'phone-list/phone-list.template.html',
       controller: PhoneListController
@@ -29,22 +29,25 @@
        * @desc Retrieves data if user is authenticated. Loads a spinner while  * waiting for async request to resolve.
        */
       function getPhones() {
-        $scope.$watch(
-          function() { return Auth.isAuthenticated; }, 
+        spinnerService.show('loader');
+        Phone.getPhones()
+          .query()
+          .$promise
+          .then(function(value) {
+            vm.dataLoaded = true;
+            spinnerService.hide('loader');
+            vm.phones = value;
+          });
+      }
+
+      $scope.$watch(
+        function() { return Auth.isAuthenticated; }, 
           function() {
             if(Auth.isAuthenticated) {
-              spinnerService.show('loader');
-              Phone.getPhones()
-                .query()
-                .$promise
-                .then(function(value) {
-                  vm.dataLoaded = true;
-                  spinnerService.hide('loader');
-                  vm.phones = value;
-                });
+              vm.getPhones();
             }
           }
-        );
-      }
+      );
+
     }
 })();
