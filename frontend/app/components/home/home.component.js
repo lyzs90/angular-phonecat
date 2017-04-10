@@ -2,9 +2,9 @@
   'use strict';
 
   angular
-    .module('home')
+    .module('components.home')
     .component('home', {
-      templateUrl: 'home/home.template.html',
+      templateUrl: 'components/home/home.template.html',
       controller: HomeController
     });
 
@@ -13,17 +13,17 @@
      * @desc Controller for binding auth state to Home template
      * @ngInject
      */
-    function HomeController(Auth, $scope) { // TODO: how to avoid using scope and watcher?
+    function HomeController(AuthService, $scope) { // TODO: how to avoid using scope and watcher?
       var vm = this;
 
       vm.$onInit = function () {
-        Auth.checkToken(); 
+        AuthService.checkToken(); 
       };
 
       $scope.$watch(
-        function() { return Auth.isAuthenticated; }, 
+        function() { return AuthService.isAuthenticated; }, 
         function() {
-          vm.isAuthenticated = Auth.isAuthenticated;
+          vm.isAuthenticated = AuthService.isAuthenticated;
       });
     }
 })();

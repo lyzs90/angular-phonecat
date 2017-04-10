@@ -2,9 +2,9 @@
   'use strict';
 
   // Define the `phoneList` module
-  angular.module('phoneListModule', [
-    'core.phone',
-    'core.auth',
+  angular.module('components.phoneList', [
+    'common.phone',
+    'common.auth',
     'angularSpinners'
   ]);
 })();

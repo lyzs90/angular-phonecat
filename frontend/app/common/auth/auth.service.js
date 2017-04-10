@@ -2,15 +2,15 @@
   'use strict';
 
   angular.
-    module('core.auth').
-    factory('Auth', Auth);
+    module('common.auth').
+    factory('AuthService', AuthService);
 
   /**
-   * @name Auth
+   * @name AuthService
    * @desc Service for passing authentication status, checking for JWT token    * and handling login/logout
    * @ngInject
    */
-  function Auth(lock, angularAuth0, store, jwtHelper, authManager, $location) {
+  function AuthService(lock, angularAuth0, store, jwtHelper, authManager, $location) {
     var isAuthenticated = false;
     var auth = angularAuth0;
 

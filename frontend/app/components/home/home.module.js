@@ -2,7 +2,7 @@
   'use strict';
 
   // Define the `home` module
-  angular.module('home', [
-    'core.auth'
+  angular.module('components.home', [
+    'common.auth'
   ]);
 })();

@@ -1,8 +1,8 @@
 'use strict';
 
-describe('checkmark', function() {
+describe('checkmarkFilter', function() {
 
-  beforeEach(module('core'));
+  beforeEach(module('common.checkmark'));
 
   it('should convert boolean values to unicode checkmark or cross',
     inject(function(checkmarkFilter) {

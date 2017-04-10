@@ -2,9 +2,9 @@
   'use strict';
 
   // Define the `phoneDetail` module
-  angular.module('phoneDetailModule', [
+  angular.module('components.phoneDetail', [
     'ui.router',
-    'core.phone'
+    'common.phone'
   ]);
 })();
 

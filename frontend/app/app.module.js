@@ -1,18 +1,13 @@
 (function() {
   'use strict';
 
-  // Define the `phonecatApp` module
-  angular.module('phonecatApp', [
-    'angular-jwt', 
+  // Define the `root` module
+  angular.module('root', [ 
     'ngMaterial',
     'ngAnimate',
     'ui.router',
-    'core',
-    'toolbar',
-    'home',
-    'cart',
-    'phoneDetailModule',
-    'phoneListModule'
+    'common',
+    'components'
   ]);
 })();
 

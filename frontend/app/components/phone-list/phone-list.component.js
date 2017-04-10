@@ -3,9 +3,9 @@
 
   // Register `phoneList` component, along with its associated controller and template
   angular.
-    module('phoneListModule').
+    module('components.phoneList').
     component('phoneList', {
-      templateUrl: 'phone-list/phone-list.template.html',
+      templateUrl: 'components/phone-list/phone-list.template.html',
       controller: PhoneListController
     });
 
@@ -14,7 +14,7 @@
      * @desc Controller for retrieving the phone list
      * @ngInject
      */
-    function PhoneListController(Phone, Auth, spinnerService, $q, $scope) {
+    function PhoneListController(PhoneService, AuthService, spinnerService, $scope) {
 	    var vm = this;
 
       vm.getPhones = getPhones;
@@ -30,7 +30,7 @@
        */
       function getPhones() {
         spinnerService.show('loader');
-        Phone.getPhones()
+        PhoneService.getPhones()
           .query()
           .$promise
           .then(function(value) {
@@ -41,9 +41,9 @@
       }
 
       $scope.$watch(
-        function() { return Auth.isAuthenticated; }, 
+        function() { return AuthService.isAuthenticated; }, 
           function() {
-            if(Auth.isAuthenticated) {
+            if(AuthService.isAuthenticated) {
               vm.getPhones();
             }
           }

@@ -1,23 +1,23 @@
 'use strict';
 
-describe('Phone', function() {
+describe('PhoneService', function() {
   var $httpBackend;
-  var Phone;
+  var PhoneService;
   var phonesData = [
     {name: 'Phone X'},
     {name: 'Phone Y'},
     {name: 'Phone Z'}
   ];
 
-  // Load the module that contains the `Phone` service before each test
-  beforeEach(module('core.phone'));
+  // Load the module that contains the `PhoneService` service before each test
+  beforeEach(module('common.phone'));
 
   // Instantiate the service and "train" `$httpBackend` before each test
-  beforeEach(inject(function(_$httpBackend_, _Phone_) {
+  beforeEach(inject(function(_$httpBackend_, _PhoneService_) {
     $httpBackend = _$httpBackend_;
     $httpBackend.expectGET('http://localhost:1337/api/protected/phones/phones').respond(phonesData);
 
-    Phone = _Phone_;
+    PhoneService = _PhoneService_;
   }));
 
   // Verify that there are no outstanding expectations or requests after each test
@@ -31,7 +31,7 @@ describe('Phone', function() {
       console.log('URL:', url);
     });
     
-    var phones = Phone.getPhones().query();
+    var phones = PhoneService.getPhones().query();
 
     expect(angular.equals(phones, [])).to.be.true();
 

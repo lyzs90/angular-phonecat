@@ -3,9 +3,9 @@
 
   // Register `phoneDetail` component, along with its associated controller and template
   angular.
-    module('phoneDetailModule').
+    module('components.phoneDetail').
     component('phoneDetail', {
-      templateUrl: 'phone-detail/phone-detail.template.html',
+      templateUrl: 'components/phone-detail/phone-detail.template.html',
       controller: PhoneDetailController
     });
 
@@ -14,12 +14,12 @@
    * @desc Controller for retrieving phone details
    * @ngInject
    */
-  function PhoneDetailController($stateParams, Phone) {
+  function PhoneDetailController($stateParams, PhoneService) {
     var vm = this;
 
     vm.setImage = setImage;
 
-    vm.phone = Phone
+    vm.phone = PhoneService
 		.getPhones()
 		.get({phoneId: $stateParams.phoneId}, function(phone) {
           vm.setImage(phone.images[0]);

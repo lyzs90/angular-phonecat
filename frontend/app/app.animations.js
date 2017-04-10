@@ -2,7 +2,7 @@
   'use strict';
 
   angular.
-    module('phonecatApp').
+    module('root').
     animation('.phone', phoneAnimationFactory);
     
     /**

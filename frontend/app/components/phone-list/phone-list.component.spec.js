@@ -1,26 +1,26 @@
 'use strict';
 
 describe('phoneList', function() {
-  var mockAuth, mockSpinner;
+  var mockAuthService, mockSpinnerService;
 
   // Load the module that contains the `phoneList` component before each test
-  beforeEach(module('phoneListModule'));
+  beforeEach(module('components.phoneList'));
 
   beforeEach(function() {
     // Mock the authentication
-    mockAuth = sinon.stub({
+    mockAuthService = sinon.stub({
       isAuthenticated: false
     });
 
     // Mock the spinner
-    mockSpinner = sinon.stub({
+    mockSpinnerService = sinon.stub({
       show: function() {}, 
       hide: function() {}
     });
     
     module(function($provide) {
-      $provide.value('Auth', mockAuth);
-      $provide.value('spinnerService', mockSpinner);
+      $provide.value('AuthService', mockAuthService);
+      $provide.value('spinnerService', mockSpinnerService);
     });
   });
 
@@ -41,15 +41,15 @@ describe('phoneList', function() {
 
     it('should call spinner when fetching data', function() {
       ctrl.getPhones();
-      assert(mockSpinner.show.calledOnce);
+      assert(mockSpinnerService.show.calledOnce);
     });
 
     it('should check that data is fetched once user is authenticated', function() {
       // simulate Auth state change
-      mockAuth.isAuthenticated = true;
+      mockAuthService.isAuthenticated = true;
       $scope.$digest();
 
-      assert(mockSpinner.show.calledOnce);
+      assert(mockSpinnerService.show.calledOnce);
     });
 
     it('should set a default value for the `orderProp` property', function() {

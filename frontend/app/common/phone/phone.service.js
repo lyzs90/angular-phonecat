@@ -2,15 +2,15 @@
   'use strict';
 
   angular.
-    module('core.phone').
-    factory('Phone', Phone);
+    module('common.phone').
+    factory('PhoneService', PhoneService);
 
   /**
-   * @name Phone
+   * @name PhoneService
    * @desc Service for retrieving phone catalog data
    * @ngInject
    */
-  function Phone($resource) {
+  function PhoneService($resource) {
     return {
       getPhones: getPhones
     };

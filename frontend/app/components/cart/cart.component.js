@@ -2,9 +2,9 @@
   'use strict';
 
   angular
-    .module('cart')
+    .module('components.cart')
     .component('cart', {
-      templateUrl: 'cart/cart.template.html',
+      templateUrl: 'components/cart/cart.template.html',
       controller: CartController
     });
 

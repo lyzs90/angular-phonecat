@@ -3,9 +3,9 @@
 
   // Register `toolbar` component, along with its associated controller and template
   angular.
-    module('toolbar').
+    module('components.toolbar').
     component('toolbar', {
-      templateUrl: 'toolbar/toolbar.template.html',
+      templateUrl: 'components/toolbar/toolbar.template.html',
       controller: ToolbarController
     });
 
@@ -14,20 +14,20 @@
      * @desc Controller for checking local storage whenever route changes
      * @ngInject
      */
-    function ToolbarController(Auth, $scope) {
+    function ToolbarController(AuthService, $scope) {
 	  var vm = this;
 
       vm.$onInit = function () {
-        vm.login = Auth.login;
-        vm.logout = Auth.logout;
+        vm.login = AuthService.login;
+        vm.logout = AuthService.logout;
 
-        Auth.checkToken(); 
+        AuthService.checkToken(); 
       };
 
       $scope.$watch(
-        function() { return Auth.isAuthenticated; },
+        function() { return AuthService.isAuthenticated; },
         function() {
-          vm.isAuthenticated = Auth.isAuthenticated;
+          vm.isAuthenticated = AuthService.isAuthenticated;
       });
     }
 })();

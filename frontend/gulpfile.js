@@ -28,7 +28,7 @@ gulp.task('scripts', function () {
         this.emit('end');
       }))
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest('app'));
+    .pipe(gulp.dest('./app/'));
 });
 
 gulp.task('default', ['scripts', 'vendor']);
