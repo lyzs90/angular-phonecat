@@ -22,6 +22,7 @@
     </md-button>
 
     <md-button
+      class="toolbar__loginBtn"
       aria-label="Login"
       ng-if="!$ctrl.isAuthenticated"
       ng-click="$ctrl.login()">
@@ -29,6 +30,7 @@
     </md-button>
 
     <md-button
+      class="toolbar__logoutBtn"
       aria-label="Logout"
       ng-if="$ctrl.isAuthenticated"
       ng-click="$ctrl.logout()">

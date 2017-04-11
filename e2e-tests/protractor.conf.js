@@ -1,6 +1,8 @@
 //jshint strict: false
 exports.config = {
 
+  rootElement: '.root',
+
   allScriptsTimeout: 11000,
 
   specs: [

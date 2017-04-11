@@ -5,15 +5,60 @@
 
 describe('PhoneCat Application', function() {
 
-  it('should redirect `index.html` to `index.html#!/phones', function() {
+  beforeEach(function() {
     browser.get('index.html');
-    expect(browser.getLocationAbsUrl()).toBe('/phones');
+  });
+
+  describe('View: Home', function() {
+
+    it('should not display any content before authentication', function() {
+      expect(element(by.tagName('h3')).getText()).toBe('Login from the toolbar above!');
+    });
+
+    it('should display view catalog button after authentication', function() {
+       // Open the Auth0 lock widget
+       element(by.css('.toolbar__loginBtn')).click();
+
+       // Check if modal has been successfully loaded
+       var emailInputExists = element(by.css('input[name=email]'));
+       browser.wait(function() {
+         return emailInputExists.isPresent();
+       }, 5000);
+
+       // Wait for modal fields to be displayed (they are on the page but might be hidden initially)
+       browser.sleep(2000);
+
+       // Enter credentials
+       var emailInput = element(by.css('input[name=email]'));
+       var passwordInput = element(by.css('input[name=password]'));
+       emailInput.sendKeys('leongyzs@gmail.com');
+       passwordInput.sendKeys('test');
+
+       // Click Auth0-lock login button
+       var auth0Login = element(by.css('.auth0-lock-submit'));
+       auth0Login.click();
+
+       // Wait for user to be authenticated before checking expectation
+       browser.sleep(6000);
+
+       // Can't click on Auth0-lock close button, so just do a redirect
+       browser.get('index.html');
+
+       browser.sleep(2000);
+
+       expect(element(by.tagName('h3')).getText()).toBe('You are now logged in!');
+    });
+
   });
 
   describe('View: Phone list', function() {
 
     beforeEach(function() {
-      browser.get('index.html#!/phones');
+      // Click catalog button
+      element(by.css('.home__catalogBtn')).click();
+
+      // Wait for data to be loaded
+      browser.sleep(2000);
     });
 
     it('should filter the phone list as a user types into the search box', function() {
@@ -62,7 +107,7 @@ describe('PhoneCat Application', function() {
       query.sendKeys('nexus');
 
       element.all(by.css('.phones li a')).first().click();
-      expect(browser.getLocationAbsUrl()).toBe('/phones/nexus-s');
+      expect(browser.getLocationAbsUrl()).toBe('/phone/nexus-s');
     });
 
   });
@@ -70,7 +115,16 @@ describe('PhoneCat Application', function() {
   describe('View: Phone detail', function() {
 
     beforeEach(function() {
-      browser.get('index.html#!/phones/nexus-s');
+      // Click catalog button
+      element(by.css('.home__catalogBtn')).click();
+
+      // Wait for data to be loaded
+      browser.sleep(2000);
+
+      // Select Nexus S
+      var query = element(by.model('$ctrl.query'));
+      query.sendKeys('nexus');
+      element.all(by.css('.phones li a')).first().click();
     });
 
     it('should display the `nexus-s` page', function() {

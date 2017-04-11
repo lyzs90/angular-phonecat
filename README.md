@@ -23,6 +23,6 @@ This app is based off the Phone Catalog app from the [AngularJS Tutorial](https:
 - [Karma](https://karma-runner.github.io/1.0/index.html) (Test Runner), [Mocha](https://mochajs.org/) (Test Framework), [Chai](http://chaijs.com/) (Assertion Library), [Sinon](http://sinonjs.org/) (Spies, stubs & mocks) are used for the frontend `cd frontend && npm test`
 
 ## E2E Tests
-- End-to-end tesing is handled by [Protactor](https://github.com/angular/protractor)`
+- End-to-end tesing is handled by [Protactor](https://github.com/angular/protractor) and [Jasmine](https://jasmine.github.io/)
 - Install Protractor globally `npm install -g protractor`
 - First start the application from root directory `npm start` then `npm run protractor`
