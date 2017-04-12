@@ -14,14 +14,15 @@
      * @desc Controller for retrieving the phone list
      * @ngInject
      */
-    function PhoneListController(PhoneService, AuthService, spinnerService, $scope) {
+    function PhoneListController(PhoneService, AuthService, spinnerService, CartService, $scope) {
 	    var vm = this;
-
-      vm.getPhones = getPhones;
-      vm.orderProp = 'age';
 		
       vm.$onInit = function() {
         vm.dataLoaded = false;
+        vm.orderProp = 'age';
+
+        vm.getPhones = getPhones;
+        vm.addItem = CartService.addItem;
       };
 
       /**

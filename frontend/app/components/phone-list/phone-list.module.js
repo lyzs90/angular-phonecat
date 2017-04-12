@@ -5,7 +5,8 @@
   angular.module('components.phoneList', [
     'common.phone',
     'common.auth',
-    'angularSpinners'
+    'angularSpinners',
+    'components.cart'
   ]);
 })();
 

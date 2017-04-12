@@ -37,7 +37,10 @@
           </a>
           <a ui-sref="detail({phoneId: phone.id})">{{phone.name}}</a>
           <p class="phone__snippet">{{phone.snippet}}</p>
-          <md-button class="md-fab phone__btn--cart" aria-label="Add to Cart">
+          <md-button 
+            class="md-fab phone__btn--cart" 
+            aria-label="Add to Cart"
+            ng-click="$ctrl.addItem({name: phone.name, snippet: phone.snippet, id: phone.id, image: phone.imageUrl, age: phone.age, price: phone.price})">
             <i class="material-icons">add_shopping_cart</i>
           </md-button>
         </li>

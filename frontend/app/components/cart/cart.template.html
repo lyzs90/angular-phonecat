@@ -1,5 +1,6 @@
-<md-content class="md-padding" layout="column">
-  <md-card>
+<md-content class="md-padding" layout="row">
+
+  <md-card flex>
     <md-card-title>
       <md-card-title-media>
         <div class="md-media-lg card-media" layout-padding><img ng-src="{{ $ctrl.profile.picture }}"></div>
@@ -10,4 +11,55 @@
       </md-card-title-text>
     </md-card-title>
   </md-card>
+
+  <md-card flex="30">
+    <md-card-title>
+      <md-card-title-text layout-padding>
+        <span class="md-headline">Total</span>
+        <md-divider></md-divider>
+        <div layout="row">
+          <span class="md-subhead" flex="60">Sub-total</span>
+          <span class="md-headline" flex>${{ $ctrl.getTotal() | number: 2}}</span>
+        </div>
+        <div layout="row">
+          <span class="md-subhead" flex="60">Delivery</span>
+          <span class="md-subhead" flex>${{ $ctrl.getTotal() * 0.05 | number: 2 }}</span>
+        </div>
+        <md-divider></md-divider>
+        <span class="md-display-1 center">${{ $ctrl.getTotal() * 1.05 | number: 2}}
+      </md-card-title-text>
+    </md-card-title>
+    <md-button
+      class="cart__checkoutBtn md-raised md-warn"
+      aria-label="Checkout">
+      Checkout
+    </md-button>
+  </md-card>
+
+</md-content>
+
+<md-content class="md-padding" layout="row">
+
+  <md-card ng-repeat="item in $ctrl.items" flex="33">
+    <md-card-title>
+      <md-card-title-text>
+        <span class="md-headline">{{ item.name }}</span>
+        <md-divider></md-divider>
+        <br />
+        <span class="md-subhead">{{ item.snippet }}</span>
+        <br />
+        <span class="md-display-1">${{ item.price }}</span>
+      </md-card-title-text>
+      <md-card-title-media>
+        <div class="md-media-sm card-media"><img alt="{{ item.name }}" ng-src="{{ item.image }}" class="md-avatar" /></div>
+      </md-card-title-media>
+    </md-card-title>
+    <md-card-actions layout="row" layout-align="end center">
+      <md-button
+        ng-click="$ctrl.removeItem(item.id)">
+        Remove
+      </md-button>
+    </md-card-actions>
+  </md-card>
+
 </md-content>

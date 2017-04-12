@@ -9,7 +9,8 @@ This app is based off the Phone Catalog app from the [AngularJS Tutorial](https:
 - Token based authentication using [Auth0](https://auth0.com/)
 - [Spinner](https://github.com/Chevtek/angular-spinners) during initial data fetch
 - State based routing using [ui-router](https://ui-router.github.io/) & HTML5 History API
-- Catalog, Shopping Cart & [Payments](https://stripe.com/sg) (coming soon!)
+- Add phones to Shopping Cart
+- [Payments](https://stripe.com/sg) (coming soon!)
 
 ## Getting Started
 - Clone the repo `git clone https://github.com/lyzs90/angular-phonecat.git`

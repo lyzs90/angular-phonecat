@@ -7,6 +7,16 @@ h1 {
   margin-top: 0;
 }
 
+/* View: Cart */
+.cart__checkoutBtn {
+  width: 50%;
+  align-self: center;
+}
+
+.center {
+  align-self: center;
+}
+
 /* View: Phone list */
 .phones {
   list-style: none;

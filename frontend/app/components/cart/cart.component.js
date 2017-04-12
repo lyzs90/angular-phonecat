@@ -13,9 +13,21 @@
    * @desc Controller for retrieving user profile in the cart
    * @ngInject
    */
-  function CartController(store) {
+  function CartController(store, CartService, $scope) {
     var vm = this;
     
-    vm.profile = JSON.parse(store.get('profile'));
+    vm.$onInit = function () {
+      vm.items = CartService.items;
+      vm.removeItem = CartService.removeItem;
+      vm.getTotal = CartService.getTotal;
+
+      vm.profile = JSON.parse(store.get('profile')); 
+    };
+
+    $scope.$watch(
+      function() { return CartService.items; }, 
+      function() {
+        vm.items = CartService.items;
+    });
   }
 })();
