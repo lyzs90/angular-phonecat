@@ -15,7 +15,7 @@
      * @ngInject
      */
     function ToolbarController(AuthService, $scope) {
-	  var vm = this;
+	    var vm = this;
 
       vm.$onInit = function () {
         vm.login = AuthService.login;

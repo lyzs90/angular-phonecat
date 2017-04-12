@@ -1,38 +1,35 @@
 'use strict';
 
 describe('phoneDetail', function() {
+  var mockPhoneService, $componentController, $scope, ctrl;
 
   // Load the module that contains the `phoneDetail` component before each test
   beforeEach(module('components.phoneDetail'));
 
+  beforeEach(function() {
+    // Mock the phone service
+    mockPhoneService = {
+      getPhones: sinon.stub().returns({
+        get: sinon.stub()
+      })
+    };
+    
+    module(function($provide) {
+      $provide.value('PhoneService', mockPhoneService);
+    });
+  });
+
   // Test the controller
   describe('PhoneDetailController', function() {
-    var $httpBackend, $componentController, ctrl;
-
-    // Mock data to be fetched
-    var xyzPhoneData = {
-      name: 'phone xyz',
-      images: ['image/url1.png', 'image/url2.png']
-    };
-
-    beforeEach(inject(function(_$componentController_, _$httpBackend_, $stateParams) {
-      // Mock the backend
-      $httpBackend = _$httpBackend_;
-      $httpBackend.expectGET('http://localhost:1337/api/protected/phones/xyz').respond(xyzPhoneData);
-
-      // Mock the router state
-      $stateParams.phoneId = 'xyz';
-
+    beforeEach(inject(function(_$componentController_, $rootScope) {
       // Mock the controller
+      $scope = $rootScope.$new();
       $componentController = _$componentController_;
-      ctrl = $componentController('phoneDetail', null);
+      ctrl = $componentController('phoneDetail', {$scope: $scope});
     }));
 
-    it('should fetch the phone details', function() {
-      expect(angular.equals(ctrl.phone, {})).to.be.true();
-
-      $httpBackend.flush();
-      expect(angular.equals(ctrl.phone, xyzPhoneData)).to.be.true();
+    it('should call PhoneService when initialised', function() {
+      assert(mockPhoneService.getPhones.calledOnce);
     });
 
   });

@@ -1,38 +1,44 @@
 'use strict';
 
 describe('phoneList', function() {
-  var mockAuthService, mockSpinnerService;
+  var mockAuthService, mockSpinnerService, mockPhoneService, $componentController, $scope, ctrl;
 
   // Load the module that contains the `phoneList` component before each test
   beforeEach(module('components.phoneList'));
 
   beforeEach(function() {
-    // Mock the authentication
+    // Mock the authentication service
     mockAuthService = sinon.stub({
       isAuthenticated: false
     });
 
-    // Mock the spinner
+    // Mock the spinner service
     mockSpinnerService = sinon.stub({
       show: function() {}, 
       hide: function() {}
     });
+
+    // Mock the phone service
+    mockPhoneService = {
+      getPhones: sinon.stub().returns({
+        query: sinon.stub().returns({
+          $promise: new Promise(function(resolve, reject) {
+            resolve('Yay');
+          })
+        })
+      })
+    };
     
     module(function($provide) {
       $provide.value('AuthService', mockAuthService);
       $provide.value('spinnerService', mockSpinnerService);
+      $provide.value('PhoneService', mockPhoneService);
     });
   });
 
   // Test the controller
   describe('PhoneListController', function() {
-    var $httpBackend, $componentController, $scope, ctrl;
-
-    beforeEach(inject(function(_$httpBackend_, _$componentController_, $rootScope) {
-      // Mock the backend
-      $httpBackend = _$httpBackend_;
-      $httpBackend.expectGET('http://localhost:1337/api/protected/phones/phones').respond(true);
-      
+    beforeEach(inject(function( _$componentController_, $rootScope) {
       // Mock the controller
       $scope = $rootScope.$new();
       $componentController = _$componentController_;
@@ -40,16 +46,19 @@ describe('phoneList', function() {
     }));
 
     it('should call spinner when fetching data', function() {
+      // Trigger data fetch
       ctrl.getPhones();
+
       assert(mockSpinnerService.show.calledOnce);
     });
 
     it('should check that data is fetched once user is authenticated', function() {
-      // simulate Auth state change
+      // Trigger Auth state change
       mockAuthService.isAuthenticated = true;
       $scope.$digest();
 
       assert(mockSpinnerService.show.calledOnce);
+      assert(mockPhoneService.getPhones.calledOnce);
     });
 
     it('should set a default value for the `orderProp` property', function() {

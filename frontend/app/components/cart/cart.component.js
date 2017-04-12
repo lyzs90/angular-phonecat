@@ -15,6 +15,7 @@
    */
   function CartController(store) {
     var vm = this;
+    
     vm.profile = JSON.parse(store.get('profile'));
   }
 })();

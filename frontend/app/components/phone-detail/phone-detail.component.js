@@ -20,10 +20,10 @@
     vm.setImage = setImage;
 
     vm.phone = PhoneService
-		.getPhones()
-		.get({phoneId: $stateParams.phoneId}, function(phone) {
-          vm.setImage(phone.images[0]);
-        });
+      .getPhones()
+      .get({phoneId: $stateParams.phoneId}, function(phone) {
+        vm.setImage(phone.images[0]);
+      });
     
     /**
      * @name setImage

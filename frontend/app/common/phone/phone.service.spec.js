@@ -1,22 +1,26 @@
 'use strict';
 
 describe('PhoneService', function() {
-  var $httpBackend;
-  var PhoneService;
-  var phonesData = [
+  var $httpBackend, PhoneService, response;
+
+  // Mock data to be fetched
+  var phoneList = [
     {name: 'Phone X'},
     {name: 'Phone Y'},
     {name: 'Phone Z'}
   ];
 
+  var xyzDetails = {
+    name: 'phone xyz',
+    images: ['image/url1.png', 'image/url2.png']
+  };
+
   // Load the module that contains the `PhoneService` service before each test
   beforeEach(module('common.phone'));
 
-  // Instantiate the service and "train" `$httpBackend` before each test
+  // Instantiate the service and `$httpBackend` before each test
   beforeEach(inject(function(_$httpBackend_, _PhoneService_) {
     $httpBackend = _$httpBackend_;
-    $httpBackend.expectGET('http://localhost:1337/api/protected/phones/phones').respond(phonesData);
-
     PhoneService = _PhoneService_;
   }));
 
@@ -26,17 +30,32 @@ describe('PhoneService', function() {
     $httpBackend.verifyNoOutstandingRequest();
   });
 
-  it('should fetch the phones data from backend', function() {
-    $httpBackend.when('GET', new RegExp('.*')).respond(function(method, url, data) {
-      console.log('URL:', url);
+  it('should fetch the phone list from backend', function() {
+    $httpBackend.expectGET('http://localhost:1337/api/protected/phones/phones').respond(phoneList);
+    
+    response = PhoneService.getPhones().query();
+
+    expect(angular.equals(response, [])).to.be.true();
+    
+    $httpBackend.flush();
+    
+    expect(angular.equals(response, phoneList)).to.be.true();
+  });
+
+  it('should fetch the phone details from backend', function() {
+    $httpBackend.expectGET('http://localhost:1337/api/protected/phones/xyz').respond(xyzDetails);
+
+    response = undefined;
+    
+    expect(angular.equals(response, undefined)).to.be.true();
+
+    PhoneService.getPhones().get({phoneId: 'xyz'}, function(data) {
+      response = data;
     });
     
-    var phones = PhoneService.getPhones().query();
-
-    expect(angular.equals(phones, [])).to.be.true();
-
     $httpBackend.flush();
-    expect(angular.equals(phones, phonesData)).to.be.true();
+
+    expect(angular.equals(response, xyzDetails)).to.be.true();
   });
 
 });
