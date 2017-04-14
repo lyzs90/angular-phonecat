@@ -31,7 +31,7 @@ describe('PhoneCat Application', function() {
        // Enter credentials
        var emailInput = element(by.css('input[name=email]'));
        var passwordInput = element(by.css('input[name=password]'));
-       emailInput.sendKeys('leongyzs@gmail.com');
+       emailInput.sendKeys('tester@test.com');
        passwordInput.sendKeys('test');
 
        // Click Auth0-lock login button
@@ -124,6 +124,10 @@ describe('PhoneCat Application', function() {
       // Select Nexus S
       var query = element(by.model('$ctrl.query'));
       query.sendKeys('nexus');
+
+      // Wait for data to be loaded
+      browser.sleep(1000);
+
       element.all(by.css('.phones li a')).first().click();
     });
 

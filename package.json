@@ -12,7 +12,9 @@
   "scripts": {
     "backend": "cd backend && sails lift",
     "frontend": "cd frontend && npm start",
+    "frontend-dev": "cd frontend && npm run dev",
     "start": "(start npm run backend) && (start npm run frontend)",
+    "dev": "(start npm run backend) && (start npm run frontend-dev)",
     "preupdate-webdriver": "npm install",
     "update-webdriver": "webdriver-manager update",
     "preprotractor": "npm run update-webdriver",

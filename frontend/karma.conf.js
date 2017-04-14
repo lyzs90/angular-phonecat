@@ -2,28 +2,15 @@
 module.exports = function(config) {
   config.set({
 
-    basePath: './app',
+    basePath: '',
 
     files: [
-      'bower_components/jquery/dist/jquery.js',
-      'bower_components/angular/angular.js',
-      'bower_components/angular-spinners/dist/angular-spinners.min.js',
-      'bower_components/angular-aria/angular-aria.js',
-      'bower_components/a0-angular-storage/dist/angular-storage.js',
-      'bower_components/angular-material/angular-material.js',
-      'bower_components/angular-animate/angular-animate.js',
-      'bower_components/angular-resource/angular-resource.js',
-      'bower_components/angular-ui-router/release/angular-ui-router.js',
+      'dist/js/vendor.js',
       'bower_components/angular-mocks/angular-mocks.js',
       'http://cdn.auth0.com/js/lock/10.13.0/lock.min.js',
       'http://cdn.auth0.com/js/auth0/8.4.0/auth0.min.js',
-      'vendor/angular-auth0.js',
-      'vendor/angular-lock.js',
-      'vendor/angular-jwt.js',
-      '**/*.module.js',
-      '*!(.module|.spec).js',
-      '!(bower_components)/**/*!(.module|.spec).js',
-      '**/*.spec.js'
+      'dist/js/bundle.js',
+      'src/**/*.spec.js'
     ],
 
     autoWatch: true,

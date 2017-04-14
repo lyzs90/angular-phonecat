@@ -12,12 +12,14 @@ This app is based off the Phone Catalog app from the [AngularJS Tutorial](https:
 - Add phones to Shopping Cart
 - [Payments](https://stripe.com/sg) (coming soon!)
 
-## Getting Started
+## Getting Started (Development)
 - Clone the repo `git clone https://github.com/lyzs90/angular-phonecat.git`
 - Navigate to the root directory `cd angular-phonecat`
-- Install 
-- Install the backend `cd backend && npm install`
-- Install the frontend `cd frontend && npm install && bower install`
+- Run the app `npm run dev`
+
+## Getting Started (Production)
+- Clone the repo `git clone https://github.com/lyzs90/angular-phonecat.git`
+- Navigate to the root directory `cd angular-phonecat`
 - Run the app `npm start`
 
 ## Unit Tests

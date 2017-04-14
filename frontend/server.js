@@ -13,7 +13,7 @@ var methodOverride = require('method-override');
 var app = express();
 
 // set the static files location /public/img will be /img for users
-app.use(express.static(path.resolve(__dirname, 'app')));       
+app.use(express.static(path.resolve(__dirname, 'dist')));       
 
 // log every request to the console          
 app.use(morgan('dev'));
@@ -35,7 +35,7 @@ app.use(methodOverride());
 -------------*/
 // load the single view file (angular will handle the page changes on the front-end)
 app.get('*', function (req, res) {
-    res.sendFile(path.resolve(__dirname, 'app/index.html'));
+    res.sendFile(path.resolve(__dirname, 'dist/index.html'));
 });
 
 /*--------------------------------------
