@@ -13,6 +13,7 @@ import templateCache from 'gulp-angular-templatecache';
 import gutil from 'gulp-util';
 import babel from 'gulp-babel';
 import server from 'browser-sync';
+import historyApiFallback from 'connect-history-api-fallback';
 import del from 'del';
 import path from 'path';
 
@@ -169,7 +170,8 @@ gulp.task('serve', () => {
     files: [`${paths.dist}/**`],
     port: 8000,
     server: {
-      baseDir: paths.dist
+      baseDir: paths.dist,
+      middleware: [ historyApiFallback() ]
     }
   });
 });
