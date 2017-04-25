@@ -32,6 +32,7 @@ function AuthService(lock, angularAuth0, store, jwtHelper, authManager, $state) 
         }
       } else {
         authManager.unauthenticate();
+        service.login();
       }
     }
   }
