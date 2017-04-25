@@ -21,5 +21,15 @@ function ToolbarController(AuthService, CartService) {
     vm.logout = AuthService.logout;
     vm.isAuthenticated = AuthService.isAuthenticated;
     vm.getCount = CartService.getCount;
+    vm.isEmpty = isEmpty;
   };
+
+  /**
+   * @name isEmpty
+   * @desc Check if Cart is empty
+   */
+  function isEmpty() {
+    var check = vm.getCount() === 0;
+    return check;
+  }
 }

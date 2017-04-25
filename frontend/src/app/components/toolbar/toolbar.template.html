@@ -19,7 +19,11 @@
       ng-if="$ctrl.isAuthenticated()"
       aria-label="Cart">
       <i class="material-icons">shopping_cart</i>
-      <span class="toolbar__cart-counter">{{ $ctrl.getCount() }}</span>
+      <span
+        ng-if="!$ctrl.isEmpty()"
+        class="toolbar__cart-counter">
+        {{ $ctrl.getCount() }}
+      </span>
     </md-button>
 
     <md-button
