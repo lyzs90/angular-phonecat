@@ -11,10 +11,12 @@ angular.
  * @desc Controller for retrieving the phone list
  * @ngInject
  */
-function PhoneListController(PhoneService, AuthService, spinnerService, CartService, $scope) {
+function PhoneListController(PhoneService, AuthService, spinnerService, CartService) {
   var vm = this;
 
   vm.$onInit = function() {
+    AuthService.checkToken();
+
     vm.dataLoaded = false;
     vm.orderProp = 'age';
 
@@ -37,14 +39,4 @@ function PhoneListController(PhoneService, AuthService, spinnerService, CartServ
         vm.phones = value;
       });
   }
-
-  $scope.$watch(
-    function() { return AuthService.isAuthenticated; }, 
-      function() {
-        if(AuthService.isAuthenticated) {
-          vm.getPhones();
-        }
-      }
-  );
-
 }

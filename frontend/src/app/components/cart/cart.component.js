@@ -10,10 +10,12 @@ angular
  * @desc Controller for retrieving user profile in the cart
  * @ngInject
  */
-function CartController(store, CartService, $scope) {
+function CartController(store, CartService, AuthService, $scope) {
   var vm = this;
   
   vm.$onInit = function () {
+    AuthService.checkToken();
+
     vm.items = CartService.items;
     vm.removeItem = CartService.removeItem;
     vm.getTotal = CartService.getTotal;

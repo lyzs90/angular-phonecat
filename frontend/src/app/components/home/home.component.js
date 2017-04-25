@@ -10,16 +10,12 @@ angular
    * @desc Controller for binding auth state to Home template
    * @ngInject
    */
-  function HomeController(AuthService, $scope) { // TODO: how to avoid using scope and watcher?
+  function HomeController(AuthService) {
     var vm = this;
 
     vm.$onInit = function () {
-      AuthService.checkToken(); 
-    };
+      AuthService.checkToken();
 
-    $scope.$watch(
-      function() { return AuthService.isAuthenticated; }, 
-      function() {
-        vm.isAuthenticated = AuthService.isAuthenticated;
-    });
+      vm.isAuthenticated = AuthService.isAuthenticated;
+    };
   }

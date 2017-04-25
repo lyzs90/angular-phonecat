@@ -7,8 +7,8 @@
 
     <md-button
       class="md-icon-button"
-      ui-sref="home"
-      ng-if="$ctrl.isAuthenticated"
+      ui-sref="home.phones"
+      ng-if="$ctrl.isAuthenticated()"
       aria-label="Home">
       <i class="material-icons">home</i>
     </md-button>
@@ -16,7 +16,7 @@
     <md-button
       class="md-icon-button"
       ui-sref="cart"
-      ng-if="$ctrl.isAuthenticated"
+      ng-if="$ctrl.isAuthenticated()"
       aria-label="Cart">
       <i class="material-icons">shopping_cart</i>
     </md-button>
@@ -24,7 +24,7 @@
     <md-button
       class="toolbar__loginBtn"
       aria-label="Login"
-      ng-if="!$ctrl.isAuthenticated"
+      ng-if="!$ctrl.isAuthenticated()"
       ng-click="$ctrl.login()">
       Login
     </md-button>
@@ -32,7 +32,7 @@
     <md-button
       class="toolbar__logoutBtn"
       aria-label="Logout"
-      ng-if="$ctrl.isAuthenticated"
+      ng-if="$ctrl.isAuthenticated()"
       ng-click="$ctrl.logout()">
       Logout
     </md-button>

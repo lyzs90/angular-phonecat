@@ -11,17 +11,20 @@ angular.
  * @desc Controller for retrieving phone details
  * @ngInject
  */
-function PhoneDetailController($stateParams, PhoneService) {
+function PhoneDetailController($stateParams, PhoneService, AuthService) {
   var vm = this;
 
-  vm.setImage = setImage;
+  vm.$onInit = function() {
+    AuthService.checkToken();
 
-  vm.phone = PhoneService
-    .getPhones()
-    .get({phoneId: $stateParams.phoneId}, function(phone) {
-      vm.setImage(phone.images[0]);
-    });
-  
+    vm.setImage = setImage;
+    vm.phone = PhoneService
+      .getPhones()
+      .get({phoneId: $stateParams.phoneId}, function(phone) {
+        vm.setImage(phone.images[0]);
+      });
+  };
+
   /**
    * @name setImage
    * @desc Function to set the main phone image. To be triggered by clicking.

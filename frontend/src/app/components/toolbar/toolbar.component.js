@@ -11,19 +11,14 @@ angular.
  * @desc Controller for checking local storage whenever route changes
  * @ngInject
  */
-function ToolbarController(AuthService, $scope) {
+function ToolbarController(AuthService) {
   var vm = this;
 
   vm.$onInit = function () {
+    AuthService.checkToken();
+
     vm.login = AuthService.login;
     vm.logout = AuthService.logout;
-
-    AuthService.checkToken(); 
+    vm.isAuthenticated = AuthService.isAuthenticated; 
   };
-
-  $scope.$watch(
-    function() { return AuthService.isAuthenticated; },
-    function() {
-      vm.isAuthenticated = AuthService.isAuthenticated;
-  });
 }

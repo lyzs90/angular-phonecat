@@ -4,11 +4,10 @@ angular.
 
 /**
  * @name AuthService
- * @desc Service for passing authentication status, checking for JWT token    * and handling login/logout
+ * @desc Service for passing authentication status, checking for JWT token     * and handling login/logout
  * @ngInject
  */
-function AuthService(lock, angularAuth0, store, jwtHelper, authManager, $location) {
-  var isAuthenticated = false;
+function AuthService(lock, angularAuth0, store, jwtHelper, authManager, $state) {
   var auth = angularAuth0;
 
   var service = {
@@ -22,7 +21,7 @@ function AuthService(lock, angularAuth0, store, jwtHelper, authManager, $locatio
 
   /**
    * @name checkToken
-   * @desc Get the JWT that is saved in local storage and if it is there,    * check whether it is expired.
+   * @desc Get the JWT that is saved in local storage and if it is there,      * check whether it is expired. Then update the auth state in authManager.
    */
   function checkToken() {
     var token = store.get('token');
@@ -30,25 +29,31 @@ function AuthService(lock, angularAuth0, store, jwtHelper, authManager, $locatio
       if (!jwtHelper.isTokenExpired(token)) {
         if (!service.isAuthenticated) {
           authManager.authenticate();
-
-          //Store the status in the scope 
-          service.isAuthenticated = true;
         }
+      } else {
+        authManager.unauthenticate();
       }
     }
   }
 
   /**
+   * @name isAuthenticated
+   * @desc Checks the auth state stored in authManager
+   */
+  function isAuthenticated() {
+    return authManager.isAuthenticated();
+  }
+
+  /**
    * @name login
-   * @desc Uses the Auth0 lock widget for login. Token/profile is stored in   * local storage and auth state is persisted in the singleton. 
+   * @desc Uses the Auth0 lock widget for login. Token/profile is stored in    * local storage. Auth state is managed by authManager.
    */
   function login() {
     lock.show();
     lock.on('authenticated', function(authResult) {
       store.set('token', authResult.idToken);
 
-      // set isAuthenticated to true
-      service.isAuthenticated = true;
+      authManager.authenticate();
 
       lock.getProfile(authResult.idToken, function(error, profile) {
         if (error) {
@@ -56,23 +61,20 @@ function AuthService(lock, angularAuth0, store, jwtHelper, authManager, $locatio
         }
         store.set('profile', JSON.stringify(profile));
       });
+
+      $state.go('home.phones');
     });
   }
 
   /**
    * @name logout
-   * @desc Logs user out and clears local storage / auth state. User is      * redirected to home route.
+   * @desc Logs user out and clears local storage / auth state. User is        * redirected to home route. Clears auth state from authManager.
    */
   function logout() {
     auth.logout();
-
-    // set isAuthenticated to false
-    service.isAuthenticated = false;
+    authManager.unauthenticate();
 
     store.remove('profile');
     store.remove('token');
-
-    // redirect to home
-    $location.path('/');
   }
 }
