@@ -11,7 +11,7 @@ angular.
  * @desc Controller for checking local storage whenever route changes
  * @ngInject
  */
-function ToolbarController(AuthService) {
+function ToolbarController(AuthService, CartService) {
   var vm = this;
 
   vm.$onInit = function () {
@@ -19,6 +19,7 @@ function ToolbarController(AuthService) {
 
     vm.login = AuthService.login;
     vm.logout = AuthService.logout;
-    vm.isAuthenticated = AuthService.isAuthenticated; 
+    vm.isAuthenticated = AuthService.isAuthenticated;
+    vm.getCount = CartService.getCount;
   };
 }

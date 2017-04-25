@@ -1,5 +1,5 @@
 angular.
-  module('components.cart').
+  module('common.cart').
   factory('CartService', CartService);
 
 /**
@@ -12,7 +12,8 @@ function CartService() {
     items: [],
     addItem: addItem,
     removeItem: removeItem,
-    getTotal: getTotal
+    getTotal: getTotal,
+    getCount: getCount
   };
 
   return service;
@@ -60,6 +61,14 @@ function CartService() {
       total += item.price;
     }
     return total;
+  }
+
+  /**
+   * @name getCount
+   * @desc Count the number of items in cart
+   */
+  function getCount() {
+    return service.items.length;
   }
 
 }

@@ -1,4 +1,5 @@
 // Define the `cart` module
 angular.module('components.cart', [
-  'angular-storage'
+  'angular-storage',
+  'common.cart'
 ]);
