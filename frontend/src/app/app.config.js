@@ -33,6 +33,11 @@ function config($locationProvider, $stateProvider, $urlRouterProvider, angularAu
       url: '/cart',
       template: '<cart></cart>',
       authenticate: true
+    })
+    .state('checkout', {
+      url: '/checkout',
+      template: '<checkout></checkout>',
+      authenticate: true
     });
 
     angularAuth0Provider.init({

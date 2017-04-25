@@ -29,18 +29,18 @@
         <span class="md-display-1 center">{{ $ctrl.getTotal() * 1.05 | currency:'$':2 }}
       </md-card-title-text>
     </md-card-title>
-    <md-button
-      class="cart__checkoutBtn md-raised md-warn"
-      aria-label="Checkout">
-      Checkout
-    </md-button>
+    <Checkout 
+      class="center stripe-button"
+      grand-total="$ctrl.grandTotal"
+      items="$ctrl.items">
+    </Checkout>
   </md-card>
 
 </md-content>
 
 <md-content class="md-padding" layout="row" layout-wrap>
 
-  <md-card ng-repeat="item in $ctrl.items" flex="30">
+  <md-card ng-repeat="item in $ctrl.items track by $index" flex="30">
     <md-card-title>
       <md-card-title-text>
         <span class="md-headline">{{ item.name }}</span>

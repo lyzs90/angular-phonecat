@@ -4,5 +4,6 @@ angular.module('components', [
   'components.home',
   'components.phoneDetail',
   'components.phoneList',
-  'components.toolbar'
+  'components.toolbar',
+  'components.checkout'
 ]);

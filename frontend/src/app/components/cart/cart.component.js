@@ -20,12 +20,13 @@ function CartController(store, CartService, AuthService, $scope) {
     vm.removeItem = CartService.removeItem;
     vm.getTotal = CartService.getTotal;
 
-    vm.profile = JSON.parse(store.get('profile')); 
+    vm.profile = JSON.parse(store.get('profile'));
   };
 
   $scope.$watch(
     function() { return CartService.items; }, 
     function() {
       vm.items = CartService.items;
+      vm.grandTotal = CartService.getTotal() * 105;  // in cents, inclusive of delivery
   });
 }
