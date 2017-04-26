@@ -80,6 +80,9 @@
     "assert": false,
 
     // Sinon
-    "sinon": false
+    "sinon": false,
+
+    // Sails
+    "sails": false
   }
 }
