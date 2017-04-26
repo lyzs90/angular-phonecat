@@ -28,7 +28,7 @@ const paths = {
   temp: './temp/',
   scripts: [`${root}/app/**/*.js`, `!${root}/app/**/*.spec.js`],
   tests: `${root}/app/**/*.spec.js`,
-  styles: `${root}/sass/*.css`,
+  styles: [`${root}/scss/*.css`, `${root}/scss/*.scss`],
   templates: `${root}/app/**/*.html`,
   modules: {
     bower: [ // Bower Components
