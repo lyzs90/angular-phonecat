@@ -40,7 +40,10 @@ module.exports.routes = {
   
   // Query for phone details
   'get /api/phones/:phoneId': 'PhoneController.getPhoneById',
-  'get /api/protected/phones/:phoneId': 'PhoneController.getProtectedPhoneById'
+  'get /api/protected/phones/:phoneId': 'PhoneController.getProtectedPhoneById',
+
+  // Handle checkout and redirect to success page
+  'post /api/orders': 'OrderController.submitOrders'
 
   /***************************************************************************
   *                                                                          *

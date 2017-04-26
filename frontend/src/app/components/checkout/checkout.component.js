@@ -14,6 +14,6 @@ angular
  * @desc Controller for Stripe form
  * @ngInject
  */
-function CheckoutController() {
+function CheckoutController() { // TODO: script tag only reads initial parameters once, before angular has time to compile. Should dynamically create the script tag
 
 }

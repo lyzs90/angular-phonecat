@@ -26,11 +26,16 @@ module.exports.policies = {
   *                                                                          *
   ***************************************************************************/
 
-  '*': true,
+  '*': false,
 
   PhoneController: {
     getProtectedPhones: 'isAuthenticated',
     getProtectedPhoneById: 'isAuthenticated'
+  },
+
+  // TODO: enable isAuthenticated once frontend can send JWT on POST
+  OrderController: {
+    submitOrders: true
   }
 
   /***************************************************************************

@@ -1,8 +1,8 @@
-<form action="http://localhost:1337/orders" method="POST">
+<form action="http://localhost:1337/api/orders" method="POST">
   <script
     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
     data-key="pk_test_tXarSdc2PylC1tsFFwVPIZhR"
-    data-amount="{{ $ctrl.grandTotal }}"
+    ng-attr-data-amount="{{ $ctrl.grandTotal }}"
     data-name="Checkout"
     data-description="Enter your credentials here"
     data-image="https://stripe.com/img/documentation/checkout/marketplace.png"

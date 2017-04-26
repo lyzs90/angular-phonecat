@@ -38,6 +38,11 @@ function config($locationProvider, $stateProvider, $urlRouterProvider, angularAu
       url: '/checkout',
       template: '<checkout></checkout>',
       authenticate: true
+    })
+    .state('home.success', {
+      url: '^/success',  // use absolute route
+      template: '<success></success>',
+      authenticate: true
     });
 
     angularAuth0Provider.init({
