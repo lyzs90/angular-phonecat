@@ -6,8 +6,12 @@
  */
 
 module.exports = {
-	submitOrders: (req, res) => {
-    return res.redirect('http://localhost:8000/success');
+  submitOrders: (req, res) => {
+	sails.log.debug('Order received!');
+	var order = req.body ? req.body : undefined;
+	OrderService.addOrder(order, (success) => {
+	  return res.redirect('http://localhost:8000/success');
+	});
   }
 };
 
