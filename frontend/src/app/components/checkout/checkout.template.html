@@ -1,16 +1,22 @@
-<form action="http://localhost:1337/api/orders" method="POST">
-  <script
-    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-key="pk_test_tXarSdc2PylC1tsFFwVPIZhR"
-    data-panel-label="Pay"
-    data-name="Checkout"
-    data-description="Enter your details here"
-    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-    data-locale="auto"
-    data-zip-code="true"
-    data-billing-address="true"
-    data-currency="sgd">
-  </script>
-  <input style="display:none" name="grandTotal" value="{{ $ctrl.grandTotal }}">
-  <input style="display:none" name="items" value="{{ $ctrl.items }}">
-</form>
+<div ng-hide="$ctrl.isInvalid()">
+  <form action="http://localhost:1337/api/orders" method="POST">
+    <script
+      src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+      data-key="pk_test_tXarSdc2PylC1tsFFwVPIZhR"
+      data-panel-label="Pay"
+      data-name="Checkout"
+      data-description="Enter your details here"
+      data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+      data-locale="auto"
+      data-zip-code="true"
+      data-billing-address="true"
+      data-currency="sgd">
+    </script>
+    <input style="display:none" name="grandTotal" value="{{ $ctrl.grandTotal }}">
+    <input style="display:none" name="items" value="{{ $ctrl.items }}">
+  </form>
+</div>
+
+<button ng-hide="!$ctrl.isInvalid()" class="stripe-button-disabled" disabled>
+  Pay with Card
+</button>

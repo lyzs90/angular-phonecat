@@ -1,2 +1,4 @@
 // Define the `checkout` module
-angular.module('components.checkout', []);
+angular.module('components.checkout', [
+  'common.cart'
+]);

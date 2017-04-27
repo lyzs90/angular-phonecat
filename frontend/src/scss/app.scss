@@ -46,6 +46,22 @@ h1 {
   padding: 10px;
 }
 
+.stripe-button-disabled {
+  background-clip: border-box;
+  background-color: rgb(238, 238, 238);
+  border-radius: 4px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .25);
+  color: darken(rgb(238, 238, 238), 20%);
+  box-sizing: border-box;
+  padding: 0px 12px;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+  height: 30px;
+  line-height: 30px;
+  min-height: 30px;
+}
+
 /* View: Phone list */
 .phones {
   list-style: none;
