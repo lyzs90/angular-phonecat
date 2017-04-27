@@ -1,8 +1,11 @@
 module.exports = {
   addOrder: (order, next) => {
-	Order.create(order).exec((err, order) => {
-	  if(err) throw err;
-	  next(order);	  
-	});
+	Order.create(order)
+		.then((order) => {
+			next(order);
+		})
+		.catch((err) => {
+			throw err;
+		});
   }
-}
+};
