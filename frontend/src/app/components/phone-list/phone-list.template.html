@@ -29,9 +29,14 @@
           <div class="please-wait">Please Wait...</div>
       </spinner>
   
-      <ul ng-if="$ctrl.dataLoaded" class="phones">
-        <li ng-repeat="phone in $ctrl.phones | filter:$ctrl.query | orderBy:$ctrl.orderProp"
-            class="thumbnail phone-list-item">
+      <ul 
+        ng-if="$ctrl.dataLoaded" 
+        class="phones"
+        infinite-scroll="$ctrl.loadMore()" 
+        infinite-scroll-distance="2">
+        <li 
+          ng-repeat="phone in $ctrl.display | filter:$ctrl.query | orderBy:$ctrl.orderProp track by $index"
+          class="thumbnail phone-list-item">
           <a ui-sref="detail({phoneId: phone.id})" class="thumb">
             <img ng-src="{{phone.imageUrl}}" alt="{{phone.name}}" />
           </a>

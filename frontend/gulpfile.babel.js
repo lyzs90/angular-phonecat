@@ -45,7 +45,8 @@ const paths = {
     node: [ // Node Modules
       'angular-auth0/dist/angular-auth0.js',
       'angular-lock/dist/angular-lock.js',
-      'angular-jwt/dist/angular-jwt.js'
+      'angular-jwt/dist/angular-jwt.js',
+      'ng-infinite-scroll/build/ng-infinite-scroll.js'
     ],
     style: [ // Bower Stylesheets
       'bootstrap/dist/css/bootstrap.css',
@@ -147,8 +148,8 @@ gulp.task('scripts', ['modules'], () => {
     .pipe(sourcemaps.init())
       .pipe(wrap('(function(angular){\n\'use strict\';\n<%= contents %>})(window.angular);'))
       .pipe(concat('bundle.js'))
-      .pipe(ngAnnotate())
       .pipe(babel())
+      .pipe(ngAnnotate())
       .pipe(
         gulpif(argv.deploy, uglify().on('error', (err) => {
           gutil.log(gutil.colors.red('[Error]'), err.toString());

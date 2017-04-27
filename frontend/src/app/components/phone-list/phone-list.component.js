@@ -22,6 +22,7 @@ function PhoneListController(PhoneService, AuthService, spinnerService, CartServ
 
     vm.getPhones = getPhones;
     vm.addItem = CartService.addItem;
+    vm.loadMore = loadMore;
   };
 
   /**
@@ -37,6 +38,19 @@ function PhoneListController(PhoneService, AuthService, spinnerService, CartServ
         vm.dataLoaded = true;
         spinnerService.hide('loader');
         vm.phones = value;
+        vm.display = vm.phones.slice(0, 3);
       });
+  }
+
+  /**
+   * @name loadMore
+   * @desc Paging function for infinite scrolling. Triggered everytime         * infinite-scroll-distance is reached.
+   */
+  function loadMore(itemsToLoad = 1) {
+    var cursor = vm.display.length - 1;  // index of current item in vm.phones
+    var itemsRemaining = vm.phones.length - cursor - 1;
+    for (var i = 0; i < itemsToLoad && i < itemsRemaining; i++) {
+      vm.display.push(vm.phones[cursor + 1]);
+    }
   }
 }
