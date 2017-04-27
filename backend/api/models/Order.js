@@ -10,47 +10,71 @@ module.exports = {
   attributes: {
     grandTotal: {
       type: 'float',
-      defaultsTo: 0
+      defaultsTo: 0,
+      required: true,
+      float: true,
+      notNull: true
     },
     items: {
       type: 'array',
-      defaultsTo: []
+      defaultsTo: [],
+      required: true,
+      notNull: true
     },
     stripeToken: {
       type: 'string',
-      defaultsTo: ''
+      defaultsTo: '',
+      required: true,
+      notNull: true
     },
     stripeTokenType: {
       type: 'string',
-      defaultsTo: ''
+      defaultsTo: '',
+      required: true,
+      notNull: true
     },
     stripeEmail: {
       type: 'string',
-      defaultsTo: ''
+      defaultsTo: '',
+      required: true,
+      email: true,
+      notNull: true
     },
     stripeBillingName: {
       type: 'string',
-      defaultsTo: ''
+      defaultsTo: '',
+      required: true,
+      notNull: true
     },
     stripeBillingAddressCountry: {
       type: 'string',
-      defaultsTo: ''
+      defaultsTo: '',
+      required: true,
+      notNull: true
     },
     stripeBillingAddressCountryCode: {
       type: 'string',
-      defaultsTo: ''
+      defaultsTo: '',
+      required: true,
+      notNull: true
     },
     stripeBillingAddressZip: {
       type: 'integer',
-      defaultsTo: 0
+      defaultsTo: 0,
+      required: true,
+      notNull: true
     },
     stripeBillingAddressLine1: {
       type: 'string',
-      defaultsTo: ''
+      defaultsTo: '',
+      required: true,
+      notNull: true
     },
     stripeBillingAddressCity: {
       type: 'string',
-      defaultsTo: ''
+      defaultsTo: '',
+      required: true,
+      notNull: true
     }
   }
 };
