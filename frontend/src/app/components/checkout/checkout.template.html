@@ -2,11 +2,13 @@
   <script
     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
     data-key="pk_test_tXarSdc2PylC1tsFFwVPIZhR"
-    ng-attr-data-amount="{{ $ctrl.grandTotal }}"
+    data-panel-label="Pay"
     data-name="Checkout"
-    data-description="Enter your credentials here"
+    data-description="Enter your details here"
     data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
     data-locale="auto"
+    data-zip-code="true"
+    data-billing-address="true"
     data-currency="sgd">
   </script>
   <input style="display:none" name="grandTotal" value="{{ $ctrl.grandTotal }}">
