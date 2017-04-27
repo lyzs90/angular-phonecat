@@ -12,6 +12,7 @@ function CartService(store) {
     items: getItems(),
     addItem: addItem,
     removeItem: removeItem,
+    removeAllItems: removeAllItems,
     getTotal: getTotal,
     getCount: getCount,
     getItems: getItems
@@ -25,8 +26,8 @@ function CartService(store) {
    */
   function getItems() {
     var profile = JSON.parse(store.get('profile'));
-    var cart = store.get('cart');
-    if (profile != null && cart.items && cart.userId === profile.user_id) {
+    var cart = store.get('cart|' + profile.user_id);
+    if (profile != null && cart != null && cart.items && cart.userId === profile.user_id) {
       return cart.items;
     } else {
       return [];
@@ -45,7 +46,7 @@ function CartService(store) {
     ];
     
     if (profile != null && service != null) {
-      store.set('cart', {userId: profile.user_id, items: service.items});
+      store.set('cart|' + profile.user_id, {userId: profile.user_id, items: service.items});
     }
   }
 
@@ -62,8 +63,18 @@ function CartService(store) {
     ];
 
     if (profile != null && service != null) {
-      store.set('cart', {userId: profile.user_id, items: service.items});
+      store.set('cart|' + profile.user_id, {userId: profile.user_id, items: service.items});
     }
+  }
+
+  /**
+   * @name removeAllItems
+   * @desc Remove all items from cart and delete state from localstorage
+   */
+  function removeAllItems() {
+    var profile = JSON.parse(store.get('profile'));
+    store.remove('cart|' + profile.user_id);
+    service.items = [];
   }
 
   /**
