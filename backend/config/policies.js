@@ -35,7 +35,7 @@ module.exports.policies = {
 
   // TODO: enable isAuthenticated once frontend can send JWT on POST
   OrderController: {
-    submitOrders: true
+    submitOrders: 'validateOrder'
   }
 
   /***************************************************************************
