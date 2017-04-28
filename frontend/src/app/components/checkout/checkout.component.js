@@ -9,8 +9,9 @@ angular
     controller: CheckoutController
   });
 
-  /**
- * @name CheckoutController
+// TODO: validate clientside
+/**
+ * @name CheckoutController T
  * @desc Controller for validating cart before checkout
  * @ngInject
  */
