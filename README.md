@@ -2,7 +2,7 @@
 
 This app is based off the Phone Catalog app from the [AngularJS Tutorial](https://docs.angularjs.org/tutorial).
 
-<img src="https://s22.postimg.org/du24od2vl/phone-catalog.png" width="800">
+<img src="https://s14.postimg.org/up3ye91yp/phone-catalog.png" width="800">
 
 ## Features
 - A separate [Sails](http://sailsjs.com/) backend
@@ -10,9 +10,11 @@ This app is based off the Phone Catalog app from the [AngularJS Tutorial](https:
 - [Spinner](https://github.com/Chevtek/angular-spinners) during initial data fetch
 - [Infinite scrolling](http://sroze.github.io/ngInfiniteScroll/index.html)
 - State based routing using [ui-router](https://ui-router.github.io/) & HTML5 History API
-- Shopping Cart
-- [Checkout](https://stripe.com/checkout)
-- [Charging](https://stripe.com/docs/charges) (coming soon!)
+- Add & remove phones from Shopping Cart 
+- [Checkout](https://stripe.com/checkout) using Stripe.js
+- Client-side validation prior to Checkout
+- [Charging](https://stripe.com/docs/charges) using Stripe.js
+- Server-side validation prior to Charging
 
 ## Getting Started (Development)
 - Clone the repo `git clone https://github.com/lyzs90/angular-phonecat.git`

@@ -16,8 +16,8 @@ module.exports = {
       notNull: true
     },
     items: {
-      type: 'array',
-      defaultsTo: [],
+      type: 'string',
+      defaultsTo: '',
       required: true,
       notNull: true
     },

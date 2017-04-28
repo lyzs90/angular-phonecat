@@ -22,6 +22,8 @@ function CheckoutController(CartService) {
     vm.getCount = CartService.getCount;
     vm.getTotal = CartService.getTotal;
     vm.isInvalid = isInvalid;
+
+    vm.items = JSON.stringify(vm.items);  // stringify before passing to backend
   };
 
   /**
