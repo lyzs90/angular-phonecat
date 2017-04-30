@@ -9,7 +9,7 @@ describe('phoneList', function() {
   beforeEach(function() {
     // Mock the authentication service
     mockAuthService = sinon.stub({
-      isAuthenticated: false
+      checkToken: function() {}
     });
 
     // Mock the spinner service
@@ -51,15 +51,6 @@ describe('phoneList', function() {
       ctrl.getPhones();
 
       assert(mockSpinnerService.show.calledOnce);
-    });
-
-    it('should check that data is fetched once user is authenticated', function() {
-      // Trigger Auth state change
-      mockAuthService.isAuthenticated = true;
-      $scope.$digest();
-
-      assert(mockSpinnerService.show.calledOnce);
-      assert(mockPhoneService.getPhones.calledOnce);
     });
 
     it('should set a default value for the `orderProp` property', function() {

@@ -1,12 +1,17 @@
 'use strict';
 
 describe('phoneDetail', function() {
-  var mockPhoneService, $componentController, $scope, ctrl;
+  var mockAuthService, mockPhoneService, $componentController, $scope, ctrl;
 
   // Load the module that contains the `phoneDetail` component before each test
   beforeEach(module('components.phoneDetail'));
 
   beforeEach(function() {
+    // Mock the authentication service
+    mockAuthService = sinon.stub({
+      checkToken: function() {}
+    });
+
     // Mock the phone service
     mockPhoneService = {
       getPhones: sinon.stub().returns({
@@ -15,6 +20,7 @@ describe('phoneDetail', function() {
     };
     
     module(function($provide) {
+      $provide.value('AuthService', mockAuthService);
       $provide.value('PhoneService', mockPhoneService);
     });
   });
@@ -29,6 +35,7 @@ describe('phoneDetail', function() {
     }));
 
     it('should call PhoneService when initialised', function() {
+      ctrl.$onInit();
       assert(mockPhoneService.getPhones.calledOnce);
     });
 

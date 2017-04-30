@@ -1,7 +1,7 @@
 'use strict';
 
 describe('cart', function() {
-  var mockStore, $componentController, $scope, ctrl;
+  var mockAuthService, mockStore, $componentController, $scope, ctrl;
 
   // Mock data to be fetched
   var userProfile = {
@@ -11,6 +11,17 @@ describe('cart', function() {
 
   // Load the module that contains the `cart` component before each test
   beforeEach(module('components.cart'));
+
+  beforeEach(function() {
+    // Mock the authentication service
+    mockAuthService = sinon.stub({
+      checkToken: function() {}
+    });
+
+    module(function($provide) {
+      $provide.value('AuthService', mockAuthService);
+    });
+  });
 
   // Mock the store service
   mockStore = {

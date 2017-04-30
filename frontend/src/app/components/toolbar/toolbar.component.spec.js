@@ -1,19 +1,24 @@
 'use strict';
 
 describe('toolbar', function() {
-  var mockAuthService, $componentController, $scope, ctrl;
+  var mockCartService, mockAuthService, $componentController, $scope, ctrl;
 
   // Load the module that contains the `toolbar` component before each test
   beforeEach(module('components.toolbar'));
 
   beforeEach(function() {
+    // Mock the cart service
+    mockCartService = sinon.stub({
+      getCount: function() {return 5;}
+    });
+
     // Mock the authentication service
     mockAuthService = sinon.stub({
-      isAuthenticated: false,
       checkToken: function() {}
     });
 
     module(function($provide) {
+      $provide.value('CartService', mockCartService);
       $provide.value('AuthService', mockAuthService);
     });
   });
@@ -28,12 +33,8 @@ describe('toolbar', function() {
       ctrl.$onInit();
     }));
 
-    it('should update local isAuthenticated state when global state changes', function() {
-      // Trigger Auth state change
-      mockAuthService.isAuthenticated = true;
-      $scope.$digest();
-
-      expect(ctrl.isAuthenticated).to.equal(mockAuthService.isAuthenticated);
+    it('should check if cart is empty', function() {
+      expect(ctrl.isEmpty()).to.be.false();
     });
 
   });
