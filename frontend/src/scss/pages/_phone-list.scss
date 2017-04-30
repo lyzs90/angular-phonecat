@@ -1,0 +1,35 @@
+.phones {
+  list-style: none;
+}
+
+.phones li {
+  clear: both;
+  height: 130px;
+  padding-top: 15px;
+}
+
+.phone-list-item {
+  display: flex;
+  align-items: center;
+}
+
+.thumb {
+  float: left;
+  height: 100px;
+  margin: -0.5em 1em 1.5em 0;
+  padding-bottom: 1em;
+  width: 100px;
+}
+
+.phone__snippet {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.phone__btn--cart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 0;
+}

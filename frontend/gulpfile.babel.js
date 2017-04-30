@@ -28,7 +28,7 @@ const paths = {
   temp: './temp/',
   scripts: [`${root}/app/**/*.js`, `!${root}/app/**/*.spec.js`],
   tests: `${root}/app/**/*.spec.js`,
-  styles: [`${root}/scss/*.css`, `${root}/scss/*.scss`],
+  styles: `${root}/scss/**/*.scss`,
   templates: `${root}/app/**/*.html`,
   modules: {
     bower: [ // Bower Components
@@ -48,9 +48,10 @@ const paths = {
       'angular-jwt/dist/angular-jwt.js',
       'ng-infinite-scroll/build/ng-infinite-scroll.js'
     ],
-    style: [ // Bower Stylesheets
-      'bootstrap/dist/css/bootstrap.css',
-      'angular-material/angular-material.css'
+    style: [ // Vendor Stylesheets
+      'bower_components/bootstrap/dist/css/bootstrap.css',
+      'bower_components/angular-material/angular-material.scss',
+      'node_modules/include-media/dist/_include-media.scss'
     ]
   },
   static: [
@@ -117,19 +118,18 @@ gulp.task('modules', ['bower-modules', 'node-modules', 'templates'], () => {
   Vendor Stylesheets
 --------------------*/
 
-gulp.task('bower-styles', () => {
-  return gulp.src(paths.modules.style.map(item => 'bower_components/' + item))
-    .pipe(sass({outputStyle: 'compressed'}))
-    .pipe(concat('vendor.css'))
-    .pipe(gulp.dest(paths.dist + 'css/'));
+gulp.task('vendor-styles', () => {
+  return gulp.src(paths.modules.style)
+    .pipe(gulp.dest(root + '/scss/vendors'));  // to be @imported in main.scss
 });
+
 
 /*-------------------
   Custom Stylesheets
 --------------------*/
 
-gulp.task('styles', ['bower-styles'], () => {
-  return gulp.src(paths.styles)
+gulp.task('styles', ['vendor-styles'], () => {
+  return gulp.src(`${root}/scss/main.scss`)
     .pipe(sass({outputStyle: 'compressed'}))
     .pipe(gulp.dest(paths.dist + 'css/'));
 });

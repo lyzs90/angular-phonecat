@@ -28,6 +28,7 @@
     "gulp-uglify": "^2.1.0",
     "gulp-util": "^3.0.8",
     "gulp-wrap": "^0.13.0",
+    "include-media": "^1.4.9",
     "karma": "^0.13.22",
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^0.2.3",
