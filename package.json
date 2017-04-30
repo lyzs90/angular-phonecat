@@ -7,7 +7,7 @@
   "license": "MIT",
   "devDependencies": {
     "jasmine-core": "^2.5.2",
-    "protractor": "^4.0.9"
+    "protractor": "^5.1.1"
   },
   "scripts": {
     "backend": "cd backend && sails lift",
