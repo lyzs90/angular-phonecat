@@ -8,8 +8,10 @@ angular.
  * @ngInject
  */
 function CartService(store) {
+  var items = [];
+
   var service = {
-    items: getItems(),
+    items: items,
     addItem: addItem,
     removeItem: removeItem,
     removeAllItems: removeAllItems,
@@ -25,12 +27,10 @@ function CartService(store) {
    * @desc Check localstorage for cart items. If user is the same, then        * retrieve items
    */
   function getItems() {
-    var profile = JSON.parse(store.get('profile'));
+    var profile = JSON.parse(store.get('profile')) || {};
     var cart = store.get('cart|' + profile.user_id);
-    if (profile != null && cart != null && cart.items && cart.userId === profile.user_id) {
-      return cart.items;
-    } else {
-      return [];
+    if (cart !== null && cart.items && cart.userId === profile.user_id) {
+     service.items = cart.items;
     }
   }
 
@@ -45,7 +45,7 @@ function CartService(store) {
       item
     ];
     
-    if (profile != null && service != null) {
+    if (profile !== null && service !== null) {
       store.set('cart|' + profile.user_id, {userId: profile.user_id, items: service.items});
     }
   }
@@ -62,7 +62,7 @@ function CartService(store) {
       ...service.items.slice(i + 1)  // everything after the item to delete
     ];
 
-    if (profile != null && service != null) {
+    if (profile !== null && service !== null) {
       store.set('cart|' + profile.user_id, {userId: profile.user_id, items: service.items});
     }
   }
@@ -104,6 +104,7 @@ function CartService(store) {
    * @desc Count the number of items in cart
    */
   function getCount() {
+    getItems();
     return service.items.length;
   }
 
