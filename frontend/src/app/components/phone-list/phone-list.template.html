@@ -1,14 +1,14 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-2">
+    <div class="col-xs-12 col-sm-3 col-md-2">
       <!--Sidebar content-->
 
-      <p>
+      <p class="phone-list__search">
         Search:
         <input ng-model="$ctrl.query" />
       </p>
 
-      <p>
+      <p class="phone-list__filter">
         Sort by:
         <select ng-model="$ctrl.orderProp">
           <option value="name">Alphabetical</option>
@@ -17,7 +17,8 @@
       </p>
 
     </div>
-    <div class="col-md-10">
+
+    <div class="col-xs-12 col-sm-9 col-md-10">
       <!--Body content-->
 
       <spinner name="loader" on-loaded="$ctrl.getPhones()">
@@ -36,12 +37,15 @@
         infinite-scroll-distance="2">
         <li 
           ng-repeat="phone in $ctrl.display | filter:$ctrl.query | orderBy:$ctrl.orderProp track by $index"
-          class="thumbnail phone-list-item">
-          <a ui-sref="detail({phoneId: phone.id})" class="thumb">
+          class="thumbnail phone-list__item">
+          <a ui-sref="detail({phoneId: phone.id})" class="phone__thumbnail">
             <img ng-src="{{phone.imageUrl}}" alt="{{phone.name}}" />
           </a>
-          <a ui-sref="detail({phoneId: phone.id})">{{phone.name}}</a>
-          <p class="phone__snippet">{{phone.snippet}}</p>
+          <a ui-sref="detail({phoneId: phone.id})" class="phone__name">{{phone.name}}</a>
+          <p layout="column" layout-fill layout-align="center">
+            <span class="phone__snippet">{{phone.snippet}}</span>
+            <span class="phone__price">{{phone.price | currency:'$':2 }}</span>
+          </p>
           <md-button 
             class="md-fab phone__btn--cart" 
             aria-label="Add to Cart"

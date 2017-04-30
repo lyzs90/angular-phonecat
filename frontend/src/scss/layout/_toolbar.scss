@@ -1,8 +1,18 @@
+@import 'vendors/include-media';
+
+.md-icon-button.md-button {
+  width: 50px;
+
+  @include media('>=tablet') {
+    width: 40px;
+  }
+}
+
 .toolbar__cart-counter {
   font-size: 10px;
   position: absolute;
   top: 2px;
-  right: 5px;
+  right: 4px;
   color: #fff;
   font-weight: bold;
   background: $accent;
@@ -10,6 +20,10 @@
   height: 20px;
   text-align: center;
   border-radius: 50%;
-  vertical-align: middle;
+  vertical-align: top;
   box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
+
+  @include media('>=tablet') {
+    right: 5px;
+  }
 }

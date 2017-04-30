@@ -1,29 +1,74 @@
+@import 'vendors/include-media';
+
 .phones {
   list-style: none;
+  padding: 0;
 }
 
 .phones li {
   clear: both;
-  height: 130px;
+  height: 160px;
   padding-top: 15px;
 }
 
-.phone-list-item {
+.phone-list__item {
   display: flex;
+  flex-direction: row;
   align-items: center;
 }
 
-.thumb {
-  float: left;
-  height: 100px;
-  margin: -0.5em 1em 1.5em 0;
-  padding-bottom: 1em;
-  width: 100px;
+.phone-list__search {
+}
+
+.phone-list__filter {
+}
+
+.phone__thumbnail {
+  width: 150px;
+  margin: 0 auto;
+
+  @include media('>=tablet') {
+    float: left;
+    height: 100px;
+    margin: -0.5em 1em 1.5em 0;
+    padding-bottom: 1em;
+    width: 100px;
+  }
+}
+
+.phone__name {
+  font-size: 16px;
+  padding-left: 25px;
+  padding-right: 25px;
+
+  @include media('>=tablet') {
+    font-size: 14px;
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 
 .phone__snippet {
-  padding-left: 50px;
-  padding-right: 50px;
+  display: none;
+
+  @include media('>=tablet') {
+    display: block;
+    font-size: 15px;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}
+
+.phone__price {
+  margin-right: 50px;
+  align-self: flex-end;
+  font-size: 18px;
+  color: $accent;
+
+  @include media('>=tablet') {
+    margin-right: 80px;
+    font-size: 26px;
+  }
 }
 
 .phone__btn--cart {
