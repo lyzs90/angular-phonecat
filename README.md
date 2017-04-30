@@ -2,7 +2,7 @@
 
 This app is based off the Phone Catalog app from the [AngularJS Tutorial](https://docs.angularjs.org/tutorial).
 
-<img src="https://s14.postimg.org/up3ye91yp/phone-catalog.png" width="800">
+<img src="https://gifyu.com/images/ezgif.com-video-to-gif549d2.gif" width="600">
 
 ## Features
 - A separate [Sails](http://sailsjs.com/) backend
