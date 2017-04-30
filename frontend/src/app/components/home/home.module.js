@@ -1,4 +1,5 @@
 // Define the `home` module
 angular.module('components.home', [
-  'common.auth'
+  'common.auth',
+  'common.cart'
 ]);

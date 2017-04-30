@@ -1,6 +1,6 @@
 // Register `success` component, along with its associated template
 angular.
-  module('components.success').
+  module('components.home').
   component('success', {
     templateUrl: './success.template.html',
     controller: SuccessController

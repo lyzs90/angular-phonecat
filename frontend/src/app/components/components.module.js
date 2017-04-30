@@ -5,6 +5,5 @@ angular.module('components', [
   'components.phoneDetail',
   'components.phoneList',
   'components.toolbar',
-  'components.checkout',
-  'components.success'
+  'components.checkout'
 ]);

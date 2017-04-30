@@ -14,8 +14,6 @@ angular
     var vm = this;
 
     vm.$onInit = function () {
-      AuthService.checkToken();
-
       vm.isAuthenticated = AuthService.isAuthenticated;
     };
   }

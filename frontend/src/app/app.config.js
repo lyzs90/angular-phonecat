@@ -19,6 +19,16 @@ function config($locationProvider, $stateProvider, $urlRouterProvider, angularAu
       template: '<home></home>',
       authenticate: false
     })
+    .state('home.login', {
+      url: '^/login',  // use absolute route
+      template: '<login-required></login-required>',
+      authenticate: false
+    })
+    .state('home.success', {
+      url: '^/success',  // use absolute route
+      template: '<success></success>',
+      authenticate: true
+    })
     .state('home.phones', {
       url: '^/phones',  // use absolute route
       template: '<phone-list></phone-list>',
@@ -37,11 +47,6 @@ function config($locationProvider, $stateProvider, $urlRouterProvider, angularAu
     .state('checkout', {
       url: '/checkout',
       template: '<checkout></checkout>',
-      authenticate: true
-    })
-    .state('home.success', {
-      url: '^/success',  // use absolute route
-      template: '<success></success>',
       authenticate: true
     });
 
